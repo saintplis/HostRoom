@@ -21,3 +21,23 @@ section{
 .about{
     padding-top: 150px;
 }
+.about h3{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: large;
+
+}
+.about img{
+    width: 300px;
+    height: 300px;
+    margin: none;
+    border-radius: 100%;
+}
+.about-content{
+    padding: 60px 0 60px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.dev-about{
+    width: 50%;
+}
