@@ -1,0 +1,103 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Mulish", sans-serif;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+}
+:root {
+    --main-color:#355245;
+    --secondary-color: #648374;
+}
+html{
+    background-color: #cff7d3;
+}
+body{
+    color: var(--text-color);
+    background: var(--background-color);
+}
+main{
+    padding-top: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+.box-login{
+    background-color: white;
+    color: black;
+    height: 100%;
+    width: 50vh;
+    border-radius: 2vh;
+    border: 0.2vh solid #1e6845;
+}
+.box-message{
+    text-align: center;
+    margin: 5vh;
+}
+.box-message h2, h4{
+    font-weight: lighter;
+}
+.box-message h2{
+    font-size: 3vh;
+}
+.box-message h4{
+    font-size: 1.5vh;
+}
+.box-contents{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.box-contents button{
+    background-color: #1e6845;
+    color: white;
+    padding: 2vh;
+    border-style: none;
+    border-radius: 1vh;
+    margin: 0.5vh 3vh;
+    font-size: 1.5vh;
+}
+.box-contents button:hover{
+    background-color: #648374;
+    transform: scale(1.03);
+    transition: .2s;
+}
+.input-box{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0.5vh 3vh;
+}
+
+.fa-solid{
+    position: absolute;
+    left: 1.8vh;
+    font-size: 2vh;
+}
+#show{
+    position: absolute;
+    right: 1.8vh;
+    font-size: 2vh;
+    cursor: pointer;
+}
+.input-box input{
+    width: 100%;
+    padding: 2vh 4.5vh;
+    border-style: none;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    outline: none;
+    font-size: 1.7vh;
+}
+
+.box-contents input::placeholder{
+    text-align: center;
+    font-size: 1.5vh;
+}
+#forget, p{
+    margin: 2vh 3vh;
+    font-size: 1.7vh;
+}
