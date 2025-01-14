@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../headerfooter/style.css">
+    <title>HostRoom - Esqueci a senha</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(function(){
+            $("#headercontent").load("../headerfooter/header.html");
+        })
+    </script>
+    <div id="headercontent"></div>
+    <main>
+        <form class="content" method="post">
+            <h2>Redefinir a senha?</h2>
+            <label>Seu email de acesso</label>
+            <input type="email" placeholder="Email" required>
+            <p>Você irá receber um e-mail no endereço informado acima contendo o procedimento para criar uma nova senha para esse usuário</p>
+            <button type="submit" name="submit">Enviar</button>
+        </form>
+    </main>
+</body>
+</html>

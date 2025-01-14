@@ -10,10 +10,6 @@
 html{
     background-color: #cff7d3;
 }
-body{
-    color: var(--text-color);
-    background: var(--background-color);
-}
 main{
     padding-top: 15vh;
     display: flex;
@@ -23,7 +19,6 @@ main{
 }
 .box-login{
     background-color: white;
-    color: black;
     height: 100%;
     width: 50vh;
     border-radius: 2vh;

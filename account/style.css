@@ -1,0 +1,111 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Mulish", sans-serif;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+}
+html{
+    background-color: #cff7d3;
+}
+main{
+    padding-top: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 130vh;
+    margin-bottom: 6vh;
+}
+.content{
+    background-color: white;
+    border-radius: 2vh;
+    height: 100%;
+    width: 120vh;
+    border: 0.2vh solid #1e6845;
+    display: flex;
+    flex-direction: column;
+    padding: 5vh;
+}
+.content h2{
+    font-weight: lighter;
+    font-size: 3vh;
+}
+.account-info{
+    display: flex;
+    flex-direction: column;
+    margin: 5vh 10vh 5vh 10vh;
+}
+.image{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+.image img{
+    width: 20vh;
+    height: 20vh;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 0.3vh solid black;
+    margin-right: 7vh;
+}
+.image input{
+    display: none;
+}
+.image label{
+    display: inline-block;
+    color: black;
+    background-color: white;
+    border-radius: 1vh;
+    border: 0.2vh solid black;
+    padding: 1vh 2vh;
+    font-size: 1.7vh;
+}
+.image i{
+    margin: 0 1vh 0 1vh;
+    font-weight: lighter;
+    font-size: 1.7vh;
+}
+.image label:hover{
+    background-color: #1e6845;
+    color: white;
+    transform: scale(1.03);
+}
+.infos{
+    display: flex;
+    flex-direction: column;
+}
+.infos label{
+    font-size: 1.7vh;
+    color: black;
+    margin-top: 2vh;
+}
+.edit-info{
+    display: flex;
+    flex-direction: row;
+}
+.infos input{
+    width: 50%;
+    padding: 1vh;
+    border-style: none;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    outline: none;
+    font-size: 1.7vh;
+}
+.infos button{
+    background-color: white;
+    border-style: none;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    font-size: 1.5vh;
+    padding: 1vh 3vh;
+    margin-left: 7vh;
+}
+.infos button:hover{
+    background-color: #1e6845;
+    color: white;
+    transform: scale(1.03);
+}
