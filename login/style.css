@@ -7,10 +7,6 @@
     list-style: none;
     text-decoration: none;
 }
-:root {
-    --main-color:#355245;
-    --secondary-color: #648374;
-}
 html{
     background-color: #cff7d3;
 }
@@ -32,10 +28,13 @@ main{
     width: 50vh;
     border-radius: 2vh;
     border: 0.2vh solid #1e6845;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 .box-message{
     text-align: center;
-    margin: 5vh;
+    margin: 7vh;
 }
 .box-message h2, h4{
     font-weight: lighter;
@@ -57,21 +56,20 @@ main{
     padding: 2vh;
     border-style: none;
     border-radius: 1vh;
-    margin: 0.5vh 3vh;
     font-size: 1.5vh;
 }
 .box-contents button:hover{
     background-color: #648374;
     transform: scale(1.03);
     transition: .2s;
+    cursor: pointer;
 }
 .input-box{
     position: relative;
     display: flex;
     align-items: center;
-    margin: 0.5vh 3vh;
+    margin: 0.5vh 0vh;
 }
-
 .fa-solid{
     position: absolute;
     left: 1.8vh;
@@ -84,7 +82,7 @@ main{
     cursor: pointer;
 }
 .input-box input{
-    width: 100%;
+    width: 40vh;
     padding: 2vh 4.5vh;
     border-style: none;
     border: 0.2vh solid black;
@@ -92,12 +90,11 @@ main{
     outline: none;
     font-size: 1.7vh;
 }
-
 .box-contents input::placeholder{
     text-align: center;
     font-size: 1.5vh;
 }
 #forget, p{
-    margin: 2vh 3vh;
+    margin: 2vh 0vh;
     font-size: 1.7vh;
 }

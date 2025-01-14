@@ -17,7 +17,7 @@
     </script>
     <div id="headercontent"></div>
     <main>
-        <div class="box-login">
+        <form method="post" class="box-login">
             <div class="box-message">
                 <h2>Bem-vindo!</h2>
                 <h4>Entrar ou cadastrar-se</h4>
@@ -33,10 +33,10 @@
                     <i id="show" class="fa fa-eye"></i>
                 </div>
                 <a href="#" id="forget">Esqueceu a senha?</a>
-                <button id="logar">Logar</button>
-                <p id="create">Não tem conta? <a href="#" id="cadastro">Cadastrar-se</a></p>
+                <button type="submit" name="submit" id="logar">Logar</button>
+                <p id="create">Não tem conta? <a href="/register/index.html" id="cadastro">Cadastrar-se</a></p>
             </div>
-        </div>
+        </form>
     </main>
     <script src="script.js"></script>
 </body>
