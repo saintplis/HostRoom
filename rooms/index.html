@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css"> 
     <link rel="stylesheet" type="text/css" href="../headerfooter/style.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>HostRoom - Quartos</title>
 </head>
 <body>
@@ -17,46 +16,70 @@
     </script>
     <div id="headercontent"></div>
     <main>
-        <section class="rooms">
-            <div class="input-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Nome do Quarto">
-                <button class="button">Procurar</button>
+        <div class="select-bar">
+            <div class="words">
+                <p>Palavras-chave</p>
             </div>
-        </section>
-        <section class="table">
-            <div class="table-header">
-                <h3>Amazonas</h3>
+            <div class="price">
+                <div class="price-header">
+                    <label>Preço</label>
+                    <span>R$ 0-1000</span>
+                </div>
+                <input type="range">
             </div>
-            <div class="row">
-                <div class="room-info">
-                    <h3>Amazonas</h3>
-                    <img src="../home/home1.jpg">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam officia velit aliquid error et delectus vitae ipsum modi nulla beatae ratione autem tenetur, iusto quaerat amet aperiam. Libero, laborum iusto.</p> 
+            <div class="filter">
+                <div class="filter-checkbox">
+                    <input type="checkbox">
+                    <label>Garagem</label>
                 </div>
-                <div class="room-info">
-                    <h3>Tocantins</h3>
-                    <img src="../home/home1.jpg">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam officia velit aliquid error et delectus vitae ipsum modi nulla beatae ratione autem tenetur, iusto quaerat amet aperiam. Libero, laborum iusto.</p> 
+                <p>Incluida na casa</p>
+                <div class="filter-checkbox">
+                    <input type="checkbox">
+                    <label>Café da manhã</label>
                 </div>
-                <div class="room-info">
-                    <h3>Pará</h3>
-                    <img src="../home/home1.jpg">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam officia velit aliquid error et delectus vitae ipsum modi nulla beatae ratione autem tenetur, iusto quaerat amet aperiam. Libero, laborum iusto.</p> 
+                <p>Incluida na estadia</p>
+                <div class="filter-checkbox">
+                    <input type="checkbox">
+                    <label>Compartilhado</label>
                 </div>
-                <div class="room-info">
-                    <h3>Rondônia</h3>
-                    <img src="../home/home1.jpg">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam officia velit aliquid error et delectus vitae ipsum modi nulla beatae ratione autem tenetur, iusto quaerat amet aperiam. Libero, laborum iusto.</p> 
+                <p>Ambiente compartilhado</p>
+                <div class="filter-checkbox">
+                    <input type="checkbox">
+                    <label>Reservado</label>
+                </div>
+                <p>Quartos já reservados</p>
+            </div>
+            <div class="people">
+                <p>Pessoas</p>
+                <div class="beds">
+                    <input type="checkbox">
+                    <label>1 Cama</label>
+                </div>
+                <div class="beds">
+                    <input type="checkbox">
+                    <label>2 Camas</label>
+                </div>
+                <div class="beds">
+                    <input type="checkbox">
+                    <label>3 Camas</label>
+                </div>
+                <div class="beds">
+                    <input type="checkbox">
+                    <label>4 Camas</label>
                 </div>
             </div>
-        </section>
+        </div>
+        <div class="rooms">
+            <div class="search-bar">
+
+            </div>
+            <div class="room-info">
+
+            </div>
+            <div class="pages">
+
+            </div>
+        </div>
     </main>
-    <script>
-        $(function(){
-            $("#footercontent").load("../headerfooter/footer.html");
-        })
-    </script>
-    <div id="footercontent"></div>
 </body>
 </html>

@@ -7,97 +7,31 @@
     list-style: none;
     text-decoration: none;
 }
-:root {
-    --main-color:#355245;
-    --secondary-color: #648374;
+main{
+  padding-top: 10.3vh;
+  height: 100vh;
 }
-body{
-    color: var(--text-color);
-    background: var(--background-color);
-}
-section{
-    padding: 70px 7%;
-}
-.rooms{
-    padding-top: 150px;
-}
-.input-box {
-  position: relative;
-  height: 60px;
-  width: 70%;
-  background: var(--secondary-color);
-  border-radius: 30px;
-}
-
-.input-box i,
-.input-box .button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.input-box i {
-  left: 20px;
-  font-size: 30px;
-  color: #fff;
-}
-
-.input-box input {
+.select-bar{
+  background-color: #14ac5c;
+  width: 20%;
   height: 100%;
-  width: 100%;
-  outline: none;
-  font-size: 18px;
-  color: #fff;
-  font-weight: 400;
-  border: none;
-  padding: 0 155px 0 65px;
-  background-color: transparent;
-}
-
-.input-box .button {
-  right: 10px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #000;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 30px;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-.input-box .button:active {
-  transform: translateY(-50%) scale(0.98);
-}
-
-.table-header h3{
-  font-size: 40px;
-}
-
-.row{
   display: flex;
+  flex-direction: column;
+  padding: 7vh 3vh 7vh 3vh;
   justify-content: space-between;
+  font-size: 1.9vh;
 }
-
-.room-info{
-  padding: 10px;
-  margin: 20px;
-  border-radius: 10px;
-  background-color: #bbb6ad;
+.price{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 }
-
-.room-info img{
-  width: 100%;
-  height: 250px;
-  padding: 0 10px;
+.price-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between  ;
 }
-
-.room-info h3{
-  padding: 10px 0 15px 5px ;
-  color: #fff;
-  font-size: 23px;
-}
-
-.room-info p{
-  padding-top: 10px;
+.filter{
+  display: flex;
+  flex-direction: column;
 }
