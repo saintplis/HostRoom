@@ -9,15 +9,37 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
+    <!-- apenas um exemplo -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(function(){
             $("#headercontent").load("../headerfooter/header.html");
+ $('#botao_cadastrar').on('click', function(){
+            $.ajax({
+                url: "http://localhost:3000/register",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    nome: $('#nome').val()
+                }),
+                success: function( result ) {
+                    let response = JSON.parse(result.responseText);
+
+                    $('#abc').html('<strong>' + response.message + '</strong>');
+                },
+                error: function(result){
+                    let response = JSON.parse(result.responseText);
+
+                    $('#abc').html('<strong>' + response.message + '</strong>');
+                }
+            });
         })
+
+        })
+
     </script>
     <div id="headercontent"></div>
     <main>
-        <form class="content" method="post" action="http://httpbin.org/post">
             <div class="init-text">
                 <h2>Faça seu cadastro</h2>
                 <p>Para ser um hóspede é necessário preencher corretamente o formulário abaixo com os respectivos dados cadastrais. Os campos com * são de preenchimento obrigatório e essenciais para realizarmos o envio do seu futuro pedido.</p>
@@ -25,7 +47,7 @@
             <div class="input-camp">
                 <div class="input-col" id="col1">
                     <label>Nome Completo*</label>
-                    <input type="text" required>
+                    <input type="text" id="nome" required>
                     <label>CPF*</label>
                     <input type="text" required>
                     <label>Email*</label>
@@ -42,12 +64,12 @@
                     <input type="tel" placeholder="(DDD) Telefone">
                     <div class="g-recaptcha" data-sitekey="6LfQw7YqAAAAANDegxpBYft6bxAN2NcC8bBCmqym"></div>
                 </div>
+                <label id="abc"></label>
             </div>
             <div class="submit">
-                <button type="submit" name="submit">Cadastrar</button>
+                <button type="submit" name="submit" id="botao_cadastrar">Cadastrar</button>
                 <p>Já tem conta? <a href="/login/index.html">Faça o login</a></p>
             </div>
-        </form>
     </main>
 </body>
 </html>
