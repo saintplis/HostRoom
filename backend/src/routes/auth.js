@@ -40,22 +40,16 @@ auth_route.register_post = async (request, response) => {
         || !body.hasOwnProperty('cpf')
         || !body.hasOwnProperty('email')
         || !body.hasOwnProperty('senha')
-        || !body.hasOwnProperty('confirmar_senha')
-        || !body.hasOwnProperty('telefone')){
+        || !body.hasOwnProperty('telefone')
+        || !body.hasOwnProperty('telefone_emerg')){
         return response.status(400).send({
             message: 'Preencha todos os campos'
         });
     }
 
-    const { nome, data, cpf, email, senha, confirmar_senha, telefone } = body;
+    const { nome, data, cpf, email, senha, telefone, telefone_emerg } = body;
 
-    if(senha !== confirmar_senha){
-        return response.status(400).send({
-            message: 'Senha diferente da confirmada'
-        });
-    }
-
-    let result = await register(nome, data, cpf, '', '', email, senha, telefone);
+    let result = await register(nome, data, cpf, email, senha, telefone, telefone_emerg);
 
     response.send({
         message: result

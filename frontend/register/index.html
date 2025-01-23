@@ -19,14 +19,16 @@
             $('#registrationForm').on('submit', function(event){
                 event.preventDefault();
 
+                let data = $('#date').val().split('-')
+
                 const formData = {
                     nome: $('#nome').val(),
                     cpf: $('#cpf').val(),
                     email: $('#email').val(),
                     telefone: $('#telefone').val(),
-                    date: $('#date').val(),
+                    data: `${data[2]}-${data[1]}-${data[0]}`,
                     senha: $('#senha').val(),
-                    telefoneEmerg: $('#telefoneEmerg').val()
+                    telefone_emerg: $('#telefoneEmerg').val()
                 };
 
                 // Enviar AJAX
