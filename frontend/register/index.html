@@ -1,75 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../headerfooter/style.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>HostRoom - Cadastro</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <title>HotelRoom - Cadastro</title>
 </head>
 <body>
-    <!-- apenas um exemplo NAO-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(function(){
-            $("#headercontent").load("../headerfooter/header.html");
- $('#botao_cadastrar').on('click', function(){
-            $.ajax({
-                url: "http://localhost:3000/register",
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({
-                    nome: $('#nome').val()
-                }),
-                success: function( result ) {
-                    let response = JSON.parse(result.responseText);
-
-                    $('#abc').html('<strong>' + response.message + '</strong>');
-                },
-                error: function(result){
-                    let response = JSON.parse(result.responseText);
-
-                    $('#abc').html('<strong>' + response.message + '</strong>');
-                }
-            });
-        })
-
-        })
-
-    </script>
     <div id="headercontent"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#headercontent").load("../headerfooter/header.html");
+
+            $('#registrationForm').on('submit', function(event){
+                event.preventDefault();
+
+                const formData = {
+                    nome: $('#nome').val(),
+                    cpf: $('#cpf').val(),
+                    email: $('#email').val(),
+                    telefone: $('#telefone').val(),
+                    date: $('#date').val(),
+                    senha: $('#senha').val(),
+                    telefoneEmerg: $('#telefoneEmerg').val()
+                };
+
+                // Enviar AJAX
+                $.ajax({
+                    url: "http://localhost:3000/register", 
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(formData),
+                    success: function(data) {
+                        $('#abc').html('<strong>' + data.message + '</strong>');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        let response;
+                        try {
+                            response = JSON.parse(jqXHR.responseText);
+                        } catch (e) {
+                            response = { message: "Ocorreu um erro inesperado." };
+                        }
+                        $('#abc').html('<strong>' + response.message + '</strong>');
+                    }
+                });
+            });
+        });
+    </script>
+
     <main>
-            <div class="init-text">
-                <h2>Faça seu cadastro</h2>
-                <p>Para ser um hóspede é necessário preencher corretamente o formulário abaixo com os respectivos dados cadastrais. Os campos com * são de preenchimento obrigatório e essenciais para realizarmos o envio do seu futuro pedido.</p>
-            </div>
+        <form id="registrationForm">
+        <div class="init-text">
+            <h2>Faça seu cadastro</h2>
+            <p>Para ser um hóspede é necessário preencher corretamente o formulário abaixo com os respectivos dados cadastrais. Os campos com * são de preenchimento obrigatório e essenciais para realizarmos o envio do seu futuro pedido.</p>
+        </div>
+        
             <div class="input-camp">
                 <div class="input-col" id="col1">
-                    <label>Nome Completo*</label>
+                    <label for="nome">Nome Completo*</label>
                     <input type="text" id="nome" required>
-                    <label>CPF*</label>
-                    <input type="text" required>
-                    <label>Email*</label>
-                    <input type="email" required>
-                    <label>Telefone*</label>
-                    <input type="tel" placeholder="(DDD) Telefone" required>
+                    
+                    <label for="cpf">CPF*</label>
+                    <input type="text" id="cpf" required>
+                    
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" required>
+                    
+                    <label for="telefone">Telefone*</label>
+                    <input type="tel" placeholder="(DDD) Telefone" id="telefone" required>
                 </div>
                 <div class="input-col" id="col2">
-                    <label>Data de nascimento*</label>
-                    <input type="date" required>
-                    <label>Senha*</label>
-                    <input type="password" placeholder="Mínimo de 8 caracteres" required>
-                    <label>Telefone de emergência</label>
-                    <input type="tel" placeholder="(DDD) Telefone">
+                    <label for="date">Data de nascimento*</label>
+                    <input type="date" id="date" required>
+                    
+                    <label for="senha">Senha*</label>
+                    <input type="password" placeholder="Mínimo de 8 caracteres" id="senha" required>
+                    
+                    <label for="telefoneEmerg">Telefone de emergência</label>
+                    <input type="tel" placeholder="(DDD) Telefone" id="telefoneEmerg">
+                    
                     <div class="g-recaptcha" data-sitekey="6LfQw7YqAAAAANDegxpBYft6bxAN2NcC8bBCmqym"></div>
                 </div>
                 <label id="abc"></label>
             </div>
             <div class="submit">
-                <button type="submit" name="submit" id="botao_cadastrar">Cadastrar</button>
+                <button type="submit" id="botao_cadastrar">Cadastrar</button>
                 <p>Já tem conta? <a href="/login/index.html">Faça o login</a></p>
             </div>
+        </form>
     </main>
 </body>
 </html>
