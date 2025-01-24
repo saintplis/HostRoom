@@ -20,12 +20,12 @@ auth_route.login_post = async (request, response) => {
 
     let result = await login(usuario, senha);
 
-    let response = { message: result };
+    let message = { message: result };
 
     if(result !== login_result.success){
-        response.status(400).send(response);
+        response.status(400).send(message);
     } else{
-        response.send(response);
+        response.send(message);
     }
 }
 
@@ -55,12 +55,12 @@ auth_route.register_post = async (request, response) => {
 
     let result = await register(nome, data, cpf, email, senha, telefone, telefone_emerg);
 
-    let response = { message: result };
+    let message = { message: result };
 
     if(result !== register_result.success){
-        response.status(400).send(response);
+        response.status(400).send(message);
     } else{
-        response.send(response);
+        response.send(message);
     }
 }
 
