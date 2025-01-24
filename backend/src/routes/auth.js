@@ -1,5 +1,5 @@
-import {login} from "../auth/login.js";
-import {register} from "../auth/register.js";
+import {login, login_result} from "../auth/login.js";
+import {register, register_result} from "../auth/register.js";
 
 let auth_route = {};
 
@@ -20,9 +20,13 @@ auth_route.login_post = async (request, response) => {
 
     let result = await login(usuario, senha);
 
-    response.send({
-        message: result
-    });
+    let response = { message: result };
+
+    if(result !== login_result.success){
+        response.status(400).send(response);
+    } else{
+        response.send(response);
+    }
 }
 
 auth_route.register_post = async (request, response) => {
@@ -51,9 +55,13 @@ auth_route.register_post = async (request, response) => {
 
     let result = await register(nome, data, cpf, email, senha, telefone, telefone_emerg);
 
-    response.send({
-        message: result
-    });
+    let response = { message: result };
+
+    if(result !== register_result.success){
+        response.status(400).send(response);
+    } else{
+        response.send(response);
+    }
 }
 
 export default auth_route 
