@@ -38,7 +38,7 @@
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(formData),
                     success: function(data) {
-                        $('#abc').html('<strong>' + data.message + '</strong>');
+                        $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         let response;
@@ -47,7 +47,7 @@
                         } catch (e) {
                             response = { message: "Ocorreu um erro inesperado." };
                         }
-                        $('#abc').html('<strong>' + response.message + '</strong>');
+                        $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
                     }
                 });
             });
@@ -56,11 +56,11 @@
 
     <main>
         <form id="registrationForm">
-        <div class="init-text">
-            <h2>Faça seu cadastro</h2>
-            <p>Para ser um hóspede é necessário preencher corretamente o formulário abaixo com os respectivos dados cadastrais. Os campos com * são de preenchimento obrigatório e essenciais para realizarmos o envio do seu futuro pedido.</p>
-        </div>
-        
+            <div class="init-text">
+                <h2>Faça seu cadastro</h2>
+                <p>Para ser um hóspede é necessário preencher corretamente o formulário abaixo com os respectivos dados cadastrais. Os campos com * são de preenchimento obrigatório e essenciais para realizarmos o envio do seu futuro pedido.</p>
+            </div>
+            
             <div class="input-camp">
                 <div class="input-col" id="col1">
                     <label for="nome">Nome Completo*</label>
@@ -84,12 +84,10 @@
                     
                     <label for="telefoneEmerg">Telefone de emergência</label>
                     <input type="tel" placeholder="(DDD) Telefone" id="telefoneEmerg">
-                    
-                    <div class="g-recaptcha" data-sitekey="6LfQw7YqAAAAANDegxpBYft6bxAN2NcC8bBCmqym"></div>
                 </div>
-                <label id="abc"></label>
             </div>
             <div class="submit">
+                <label id="abc"></label> 
                 <button type="submit" id="botao_cadastrar">Cadastrar</button>
                 <p>Já tem conta? <a href="/login/index.html">Faça o login</a></p>
             </div>

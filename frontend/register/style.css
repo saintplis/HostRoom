@@ -92,19 +92,19 @@ form#registrationForm {
     margin-bottom: 0.5vh; /* Espaço entre label e input */
 }
 
-/* Estilização das Mensagens de Feedback */
 #abc {
-    margin-top: 2vh;
+    margin-bottom: 2vh; 
     font-size: 1.5vh;
     text-align: center;
+    color: red; 
 }
 
 #abc.success strong {
-    color: #5cb85c; /* Verde para sucesso */
+    color: #5cb85c; 
 }
 
 #abc.error strong {
-    color: #d9534f; /* Vermelho para erro */
+    color: #d9534f; 
 }
 
 /* Estilização da Seção de Submissão */

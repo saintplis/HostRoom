@@ -1,3 +1,4 @@
+/* Reset e Estilos Globais */
 * {
     padding: 0;
     margin: 0;
@@ -7,9 +8,12 @@
     list-style: none;
     text-decoration: none;
 }
+
 html{
     background-color: #cff7d3;
 }
+
+/* Estilização do Main */
 main{
     padding-top: 15vh;
     display: flex;
@@ -17,6 +21,8 @@ main{
     align-items: center;
     height: 85vh;
 }
+
+/* Estilização da Caixa de Login */
 .box-login{
     background-color: white;
     height: 100%;
@@ -26,70 +32,163 @@ main{
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding: 2vh 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
+
+/* Estilização da Mensagem de Boas-Vindas */
 .box-message{
     text-align: center;
-    margin: 7vh;
+    margin: 7vh 2vh;
 }
-.box-message h2, h4{
+
+.box-message h2,
+.box-message h4{
     font-weight: lighter;
 }
+
 .box-message h2{
     font-size: 3vh;
 }
+
 .box-message h4{
     font-size: 1.5vh;
 }
+
+/* Estilização do Conteúdo da Caixa de Login */
 .box-contents{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    width: 80%;
 }
-.box-contents button{
-    background-color: #1e6845;
-    color: white;
-    padding: 2vh;
-    border-style: none;
-    border-radius: 1vh;
-    font-size: 1.5vh;
-}
-.box-contents button:hover{
-    background-color: #648374;
-    transform: scale(1.03);
-    transition: .2s;
-    cursor: pointer;
-}
+
+/* Estilização dos Campos de Entrada */
 .input-box{
     position: relative;
     display: flex;
     align-items: center;
-    margin: 0.5vh 0vh;
+    margin: 1vh 0;
 }
+
 .fa-solid{
     position: absolute;
     left: 1.8vh;
     font-size: 2vh;
+    color: #1e6845;
 }
+
 #show{
     position: absolute;
     right: 1.8vh;
     font-size: 2vh;
     cursor: pointer;
+    color: #1e6845;
 }
+
 .input-box input{
-    width: 40vh;
+    width: 100%;
     padding: 2vh 4.5vh;
-    border-style: none;
     border: 0.2vh solid black;
     border-radius: 1vh;
     outline: none;
     font-size: 1.7vh;
 }
-.box-contents input::placeholder{
+
+.input-box input::placeholder{
     text-align: center;
     font-size: 1.5vh;
+    color: #999;
 }
-#forget, p{
-    margin: 2vh 0vh;
-    font-size: 1.7vh;
+
+#abc {
+    margin-bottom: 2vh; 
+    font-size: 1.5vh;
+    text-align: center;
+    color: red; 
+}
+
+#abc.success strong {
+    color: #5cb85c;
+}
+
+#abc.error strong {
+    color: #d9534f; 
+}
+
+/* Estilização da Seção de Submissão no Login */
+.submit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2vh; /* Espaço acima da seção de submissão */
+}
+
+.submit a#forget {
+    margin-bottom: 1vh; /* Espaço abaixo do link "Esqueceu a senha?" */
+    font-size: 1.5vh;
+    color: #1e6845;
+}
+
+.submit a#forget:hover {
+    color: #648374;
+}
+
+.submit button {
+    background-color: #1e6845;
+    color: white;
+    padding: 2vh;
+    border: none;
+    border-radius: 1vh;
+    font-size: 1.5vh;
+    width: 40vh;
+    transition: background-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.submit button:hover {
+    background-color: #648374;
+    transform: scale(1.03);
+}
+
+.submit p#create {
+    margin-top: 1vh;
+    font-size: 1.5vh;
+    color: #333;
+}
+
+.submit p#create a#cadastro {
+    color: #1e6845;
+    transition: color 0.2s;
+}
+
+.submit p#create a#cadastro:hover {
+    color: #648374;
+}
+
+/* Responsividade para Dispositivos Móveis */
+@media (max-width: 768px) {
+    .box-login{
+        width: 80vh;
+    }
+
+    .box-contents{
+        width: 100%;
+    }
+
+    .submit button {
+        width: 100%;
+    }
+
+    .input-box input{
+        width: 100%;
+        padding: 2vh 2vh;
+    }
+}
+
+/* Foco Visual para Inputs */
+.input-box input:focus {
+    border-color: #1e6845;
+    box-shadow: 0 0 5px rgba(30, 104, 69, 0.5);
 }
