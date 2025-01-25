@@ -67,9 +67,7 @@ auth_route.verify_post = async (request, response) => {
     if(!body 
         || !body.hasOwnProperty('email') 
         || !body.hasOwnProperty('codigo')){
-        return response.status(400).send({
-            message: 'Preencha todos os campos'
-        });
+        return respond(response, 'Preencha todos os campos');
     }
 
     const { email, codigo } = body;
