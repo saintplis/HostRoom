@@ -12,21 +12,11 @@ const email_result = {
     expired_code: 'Codigo expirou',
 };
 
-const create_code = async (user_data) => {
-    if(!user_data){
-        return email_result.invalid_data;
-    }
-
-    if(user_data.validado){
-        return email_result.already_validated;
-    }
-
-    let email = user_data.email;
-
+const raw_create_send = async (user_id, email) => {
     let code = config.rand_str(6);
 
     await EmailCode.create({
-        user_id: user_data.id,
+        user_id,
         email,
         codigo: code,
         expira_em: Math.floor((config.cur_time_in_seconds()) + 15 * 60), // 15 minutos de espera
@@ -37,7 +27,21 @@ const create_code = async (user_data) => {
         to: email,
         subject: "Codigo do HostRoom",
         text: `Seu codigo de verificacao de conta eh ${code}`,
-    })
+    });
+
+    return code;
+}
+
+const create_code = async (user_data) => {
+    if(!user_data){
+        return email_result.invalid_data;
+    }
+
+    if(user_data.validado){
+        return email_result.already_validated;
+    }
+
+    await raw_create_send(user_data.id, user_data.email);
 
     return email_result.success; 
 }
@@ -54,6 +58,7 @@ const validate_code = async(email, code) => {
     }
 
     if(code_data.expira_em <= config.cur_time_in_seconds()){
+        await raw_create_send(code_data.user_id, email); //envia um novo email caso o codigo anterior teja expirado
         return email_result.expired_code;
     }
 
