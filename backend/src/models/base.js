@@ -20,7 +20,7 @@ export class BaseModel {
     async create(data) {
         let con = config.con;
 
-        return await con`INSERT INTO ${con(this.data)} ${con(data)} RETURNING *`;
+        return (await con`INSERT INTO ${con(this.data)} ${con(data)} RETURNING *`)[0];
     }
 
     async update(id, data) {

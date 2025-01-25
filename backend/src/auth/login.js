@@ -5,6 +5,7 @@ const login_result = {
     success: 'Sucesso',
     invalid_email: 'Email invalido',
     invalid_pass: 'Senha invalida',
+    unverified_email: 'Por favor cheque seu email para obter o codigo de verificacao',
 };
 
 const login = async (user, pass) => {
@@ -16,6 +17,10 @@ const login = async (user, pass) => {
     
     if(!(await bcrypt.compare(pass, user_data.senha))){
         return login_result.invalid_pass;
+    }
+
+    if(!user_data.validado){
+        return login_result.unverified_email;
     }
 
     return login_result.success; 

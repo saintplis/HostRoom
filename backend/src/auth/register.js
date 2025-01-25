@@ -3,6 +3,7 @@ import User from "../models/user.js";
 
 import validator from '../validators.js';
 import {Roles} from '../models/roles.js';
+import {create_code} from './email.js';
 
 const register_result = {
     success: 'Sucesso',
@@ -53,7 +54,7 @@ const register = async (name, birth_date, cpf, email, pass, phone_number, emerg_
 
     let hashed_pass = await bcrypt.hash(pass, 10);
 
-    await User.create({
+    let user_data = await User.create({
         nome: name,
         data_de_nascimento: birth_date,
         cpf: cpf,
@@ -63,10 +64,13 @@ const register = async (name, birth_date, cpf, email, pass, phone_number, emerg_
         telefone_emerg: emerg_phone_number,
 
         cargo: Roles.USER,
-        admin: 0
+        admin: 0,
+        validado: 0,
     });
 
-    return register_result.success; 
+    let result = await create_code(user_data);
+
+    return result; 
 }
 
 export {register, register_result}

@@ -1,39 +1,40 @@
+import { validate_code, email_result } from "../auth/email.js";
 import {login, login_result} from "../auth/login.js";
 import {register, register_result} from "../auth/register.js";
 
 let auth_route = {};
 
-auth_route.login_post = async (request, response) => {
-    if(request.session.get('id')){ //sessao ja existente
-        return response.status(401).send({
-            messsage: 'Usuário ja existe'
-        });
+const respond = (response, result) => {
+    let formatted_msg = { message: result };
+
+    if(result !== login_result.success && result !== register_result.success && result !== email_result.success){
+        return response.status(400).send(formatted_msg);
     }
 
-    if(!request.body || !request.body.hasOwnProperty('usuario') || !request.body.hasOwnProperty('senha')){
-        return response.status(400).send({
-            message: 'Preencha o usuário e a senha'
-        });
+    return response.send(formatted_msg);
+}
+
+auth_route.login_post = async (request, response) => {
+    if(request.session.get('id')){ //sessao ja existente
+        return respond(response, 'Usuário ja existe');
+    }
+
+    let body = request.body;
+
+    if(!body || !body.hasOwnProperty('usuario') || !body.hasOwnProperty('senha')){
+        return respond(response, 'Preencha o usuário e a senha');
     }
 
     const { usuario, senha } = request.body;
 
     let result = await login(usuario, senha);
 
-    let message = { message: result };
-
-    if(result !== login_result.success){
-        response.status(400).send(message);
-    } else{
-        response.send(message);
-    }
+    return respond(response, result);
 }
 
 auth_route.register_post = async (request, response) => {
     if(request.session.get('id')){ //sessao ja existente
-        return response.status(401).send({
-            messsage: 'Usuário ja existe'
-        });
+        return respond(response, 'Usuário ja existe');
     }
 
     let body = request.body;
@@ -46,22 +47,36 @@ auth_route.register_post = async (request, response) => {
         || !body.hasOwnProperty('senha')
         || !body.hasOwnProperty('telefone')
         || !body.hasOwnProperty('telefone_emerg')){
-        return response.status(400).send({
-            message: 'Preencha todos os campos'
-        });
+        return respond(response, 'Preencha todos os campos');
     }
 
     const { nome, data, cpf, email, senha, telefone, telefone_emerg } = body;
 
     let result = await register(nome, data, cpf, email, senha, telefone, telefone_emerg);
 
-    let message = { message: result };
+    return respond(response, result);
+}
 
-    if(result !== register_result.success){
-        response.status(400).send(message);
-    } else{
-        response.send(message);
+auth_route.verify_post = async (request, response) => {
+    if(request.session.get('id')){ //sessao ja existente
+        return respond(response, 'Nao se pode verificar quando se esta logado');
     }
+
+    let body = request.body;
+
+    if(!body 
+        || !body.hasOwnProperty('email') 
+        || !body.hasOwnProperty('codigo')){
+        return response.status(400).send({
+            message: 'Preencha todos os campos'
+        });
+    }
+
+    const { email, codigo } = body;
+
+    let result = await validate_code(email, codigo);
+
+    return respond(response, result);
 }
 
 export default auth_route 
