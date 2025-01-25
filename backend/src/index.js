@@ -18,6 +18,7 @@ app.get('/', index_route.get);
 
 app.post('/login', auth_route.login_post);
 app.post('/register', auth_route.register_post);
+app.post('/verify', auth_route.verify_post);
 
 app.listen({ port: 3000 }, (err,) => {
     if(err){
