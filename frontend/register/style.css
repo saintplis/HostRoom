@@ -1,0 +1,174 @@
+/* Reset e Estilos Globais */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Mulish", sans-serif;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+}
+
+html {
+    background-color: #cff7d3;
+}
+
+/* Estilização do Main */
+main {
+    padding-top: 15vh;
+    display: flex;
+    flex-direction: column; /* Empilha init-text e form verticalmente */
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh; /* Ajustado para melhor responsividade */
+}
+
+/* Estilização do Texto Inicial */
+.init-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3vh; /* Espaço entre o texto e o formulário */
+}
+
+.init-text h2,
+.init-text p {
+    font-weight: lighter;
+}
+
+.init-text h2 {
+    font-size: 3vh;
+}
+
+.init-text p {
+    margin: 4vh 0;
+    font-size: 1.7vh;
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Estilização do Formulário */
+form#registrationForm {
+    background-color: white; /* Adiciona um fundo branco ao formulário */
+    border-radius: 2vh;
+    border: 0.2vh solid #1e6845;
+    padding: 4vh;
+    width: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+}
+
+/* Estilização das Campanhas de Entrada */
+.input-camp {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between; /* Espaça as colunas igualmente */
+}
+
+/* Estilização das Colunas de Entrada */
+.input-col {
+    display: flex;
+    flex-direction: column;
+    width: 48%; /* Ajusta a largura das colunas */
+}
+
+.input-col input {
+    width: 100%;
+    height: 5vh;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    outline: none;
+    font-size: 1.7vh;
+    padding: 0 2vh;
+    margin-bottom: 2vh;
+}
+
+.input-col label {
+    font-size: 1.5vh;
+    color: red;
+    margin-bottom: 0.5vh; /* Espaço entre label e input */
+}
+
+#abc {
+    margin-bottom: 2vh; 
+    font-size: 1.5vh;
+    text-align: center;
+    color: red; 
+}
+
+#abc.success strong {
+    color: #5cb85c; 
+}
+
+#abc.error strong {
+    color: #d9534f; 
+}
+
+/* Estilização da Seção de Submissão */
+.submit {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3vh;
+    align-items: center;
+    width: 100%;
+}
+
+.submit button,
+.submit p {
+    font-size: 1.7vh;
+}
+
+.submit button {
+    background-color: #1e6845;
+    border: none;
+    border-radius: 1vh;
+    color: white;
+    padding: 1.7vh;
+    width: 30vh;
+    transition: background-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.submit button:hover {
+    background-color: #648374;
+    transform: scale(1.03);
+}
+
+.submit p {
+    margin-top: 0.7vh;
+    color: #333; /* Cor do texto */
+}
+
+.submit p a {
+    color: #1e6845;
+    transition: color 0.2s;
+}
+
+.submit p a:hover {
+    color: #648374;
+}
+
+/* Responsividade para Dispositivos Móveis */
+@media (max-width: 768px) {
+    .input-camp {
+        flex-direction: column;
+    }
+
+    .input-col {
+        width: 100%;
+        margin: 0;
+    }
+
+    .submit button {
+        width: 100%;
+    }
+}
+
+/* Foco Visual para Inputs */
+.input-col input:focus {
+    border-color: #1e6845;
+    box-shadow: 0 0 5px rgba(30, 104, 69, 0.5);
+}

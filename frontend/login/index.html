@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+    <link rel="stylesheet" type="text/css" href="../headerfooter/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>HostRoom - Login</title>
+</head>
+<body>
+    <div id="headercontent"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(function(){
+            $("#headercontent").load("../headerfooter/header.html");
+
+            $('#loginForm').on('submit', function(event){
+                event.preventDefault();
+
+                const formData = {
+                    usuario: $('#email').val(),
+                    senha: $('#senha').val()
+                };
+
+                // Enviar AJAX
+                $.ajax({
+                    url: "http://localhost:3000/login", 
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(formData),
+                    success: function(data) {
+                        $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        let response;
+                        try {
+                            response = JSON.parse(jqXHR.responseText);
+                        } catch (e) {
+                            response = { message: "Ocorreu um erro inesperado." };
+                        }
+                        $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <main>
+        <form method="post" class="box-login" id="loginForm">
+            <div class="box-message">
+                <h2>Bem-vindo!</h2>
+                <h4>Entrar ou cadastrar-se</h4>
+            </div>
+            <div class="box-contents">
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input id="email" placeholder="Email ou CPF" type="text" required>
+                </div>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input id="senha" placeholder="Senha" type="password" required>
+                    <i id="show" class="fa fa-eye"></i>
+                </div>
+                <div class="submit">
+                    <label id="abc"></label>
+                    <a href="/forgot/index.html" id="forget">Esqueceu a senha?</a>
+                    <button type="submit" name="submit" id="logar">Logar</button>
+                    <p id="create">Não tem conta? <a href="/register/index.html" id="cadastro">Cadastrar-se</a></p>
+                </div>
+            </div>
+        </form>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

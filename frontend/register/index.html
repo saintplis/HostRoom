@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../headerfooter/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>HotelRoom - Cadastro</title>
+</head>
+<body>
+    <div id="headercontent"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#headercontent").load("../headerfooter/header.html");
+
+            $('#registrationForm').on('submit', function(event){
+                event.preventDefault();
+
+                let data = $('#date').val().split('-')
+
+                const formData = {
+                    nome: $('#nome').val(),
+                    cpf: $('#cpf').val(),
+                    email: $('#email').val(),
+                    telefone: $('#telefone').val(),
+                    data: `${data[2]}-${data[1]}-${data[0]}`,
+                    senha: $('#senha').val(),
+                    telefone_emerg: $('#telefoneEmerg').val()
+                };
+
+                // Enviar AJAX
+                $.ajax({
+                    url: "http://localhost:3000/register", 
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(formData),
+                    success: function(data) {
+                        $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        let response;
+                        try {
+                            response = JSON.parse(jqXHR.responseText);
+                        } catch (e) {
+                            response = { message: "Ocorreu um erro inesperado." };
+                        }
+                        $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <main>
+        <form id="registrationForm">
+            <div class="init-text">
+                <h2>Faça seu cadastro</h2>
+                <p>Para ser um hóspede é necessário preencher corretamente o formulário abaixo com os respectivos dados cadastrais. Os campos com * são de preenchimento obrigatório e essenciais para realizarmos o envio do seu futuro pedido.</p>
+            </div>
+            
+            <div class="input-camp">
+                <div class="input-col" id="col1">
+                    <label for="nome">Nome Completo*</label>
+                    <input type="text" id="nome" required>
+                    
+                    <label for="cpf">CPF*</label>
+                    <input type="text" id="cpf" required>
+                    
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" required>
+                    
+                    <label for="telefone">Telefone*</label>
+                    <input type="tel" placeholder="(DDD) Telefone" id="telefone" required>
+                </div>
+                <div class="input-col" id="col2">
+                    <label for="date">Data de nascimento*</label>
+                    <input type="date" id="date" required>
+                    
+                    <label for="senha">Senha*</label>
+                    <input type="password" placeholder="Mínimo de 8 caracteres" id="senha" required>
+                    
+                    <label for="telefoneEmerg">Telefone de emergência</label>
+                    <input type="tel" placeholder="(DDD) Telefone" id="telefoneEmerg">
+                </div>
+            </div>
+            <div class="submit">
+                <label id="abc"></label> 
+                <button type="submit" id="botao_cadastrar">Cadastrar</button>
+                <p>Já tem conta? <a href="/login/index.html">Faça o login</a></p>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
