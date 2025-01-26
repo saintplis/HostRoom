@@ -26,6 +26,9 @@ main{
   flex-direction: column;
   width: 80%;
 }
+.price input{
+  accent-color: black;
+}
 .price-header{
   display: flex;
   flex-direction: row;
