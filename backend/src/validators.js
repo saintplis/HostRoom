@@ -41,12 +41,12 @@ validator.birth_date = (date) => {
         return false;
     }
 
-    let parts = date.split('/');
+    let parts = date.split('-');
 
     let bdate = new Date(`${parts[2]}/${parts[1]}/${parts[0]}`);
     
     let diff_date = new Date(Date.now() - bdate);
-    
+
     return Math.abs(diff_date.getUTCFullYear() - 1970) >= 18;
 };
 
