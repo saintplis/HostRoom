@@ -45,12 +45,11 @@ auth_route.register_post = async (request, response) => {
         || !body.hasOwnProperty('cpf')
         || !body.hasOwnProperty('email')
         || !body.hasOwnProperty('senha')
-        || !body.hasOwnProperty('telefone')
-        || !body.hasOwnProperty('telefone_emerg')){
+        || !body.hasOwnProperty('telefone')){
         return respond(response, 'Preencha todos os campos');
     }
 
-    const { nome, data, cpf, email, senha, telefone, telefone_emerg } = body;
+    const { nome, data, cpf, email, senha, telefone, telefone_emerg = "" } = body;
 
     let result = await register(nome, data, cpf, email, senha, telefone, telefone_emerg);
 
