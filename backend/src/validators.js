@@ -1,5 +1,9 @@
 let validator = {};
 
+validator.pass = (pass) => {
+    return pass.length >= 8;
+}
+
 //https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/
 validator.cpf_digs = (cpf) => {
     if(cpf.split('').every(chr => chr === cpf[0])){

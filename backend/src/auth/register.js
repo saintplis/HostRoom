@@ -10,6 +10,7 @@ const register_result = {
     user_already_exists: 'Usuário ja existe',
     invalid_name: 'Um nome e um sobrenome sao necessarios',
     invalid_pass: 'Senha invalida',
+    bad_pass_length: 'Senha precisa ter no minimo 8 caracteres',
     invalid_cpf: 'CPF invalido',
     invalid_phone_number: 'Numero de telefone invalido',
     invalid_birth_date: 'Data de nascimento invalida ou menor de 18'
@@ -42,6 +43,10 @@ const register = async (name, birth_date, cpf, email, pass, phone_number, emerg_
 
     if(!validator.birth_date(birth_date)){
         return register_result.invalid_birth_date; 
+    }
+
+    if(!validator.pass(pass)){
+        return register_result.bad_pass_length;
     }
 
     if(await User.exists({
