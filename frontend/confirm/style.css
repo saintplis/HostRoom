@@ -1,0 +1,119 @@
+/* Reset e Estilos Globais */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Mulish", sans-serif;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+}
+
+html {
+    background-color: #cff7d3;
+}
+
+/* Estilização do Main */
+main {
+    padding-top: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+/* Caixa de Confirmação - similar à .box-login */
+.confirmation-box {
+    background-color: white;
+    width: 50vh;
+    border-radius: 2vh;
+    border: 0.2vh solid #1e6845;
+    display: flex;
+    flex-direction: column;
+    padding: 5vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Título */
+.confirmation-box h2 {
+    text-align: center;
+    font-weight: lighter;
+    font-size: 3vh;
+    margin-bottom: 0vh;
+}
+
+/* Labels */
+.confirmation-box label {
+    font-size: 1.7vh;
+    margin-bottom: 1vh;
+}
+
+/* Campos de Entrada */
+.confirmation-box input {
+    width: 100%;
+    padding: 2vh;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    outline: none;
+    font-size: 1.7vh;
+    margin-bottom: 1vh;
+}
+
+.confirmation-box input::placeholder {
+    text-align: center;
+    font-size: 1.5vh;
+    color: #999;
+}
+
+/* Parágrafo explicativo */
+.confirmation-box p {
+    font-size: 1.7vh;
+    text-align: center;
+    margin: 3vh 0;
+}
+
+/* Mensagem de resposta */
+#abc {
+    font-size: 1.5vh;
+    text-align: center;
+    margin-bottom: 2vh;
+}
+#abc.success strong {
+    color: #5cb85c;
+}
+#abc.error strong {
+    color: #d9534f;
+}
+
+/* Botão de Envio */
+.confirmation-box button {
+    background-color: #1e6845;
+    color: white;
+    padding: 2vh;
+    border: none;
+    border-radius: 1vh;
+    font-size: 1.5vh;
+    width: 100%;
+    transition: background-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.confirmation-box button:hover {
+    background-color: #648374;
+    transform: scale(1.03);
+}
+
+/* Responsividade para Dispositivos Móveis */
+@media (max-width: 768px) {
+    .confirmation-box {
+        width: 80vh;
+    }
+
+    .confirmation-box input {
+        padding: 2vh;
+    }
+
+    .confirmation-box button {
+        width: 100%;
+    }
+}

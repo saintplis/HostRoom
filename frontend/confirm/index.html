@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../headerfooter/style.css">
+    <title>HostRoom - Esqueci a senha</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+    <script>
+        $(function(){
+            $("#headercontent").load("../headerfooter/header.html");
+
+            $('#verifform').on('submit', function(event){
+                event.preventDefault();
+
+                const formData = {
+                    email: $('#email').val(),
+                    codigo: $('#codigo').val()
+                };
+
+                // Enviar AJAX
+                $.ajax({
+                    url: "http://localhost:3000/verify", 
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(formData),
+                    success: function(data) {
+                        $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        let response;
+                        try {
+                            response = JSON.parse(jqXHR.responseText);
+                        } catch (e) {
+                            response = { message: "Ocorreu um erro inesperado." };
+                        }
+                        $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <div id="headercontent"></div>
+    <main>
+        <form class="confirmation-box" method="post" id="verifform">
+            <h2>Confirmação de email</h2>
+            <p>Você receberá um e-mail no endereço fornecido contendo um código de confirmação. Insira esse código para validar seu e-mail e concluir a criação da sua conta.</p>
+            <label>Seu email de acesso</label>
+            <input type="email" id="email" placeholder="Email" required>
+            <label>Seu código de acesso</label>
+            <input type="text" id="codigo" placeholder="Código" required>
+            
+            <label id="abc"></label>
+            <button type="submit" name="submit">Enviar</button>
+        </form>
+    </main>
+</body>
+</html>
