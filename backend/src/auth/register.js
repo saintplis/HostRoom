@@ -37,7 +37,7 @@ const register = async (name, birth_date, cpf, email, pass, phone_number, emerg_
 
     emerg_phone_number = emerg_phone_number.replace(/[^0-9]/g, '');
 
-    if(!validator.phone_number_digs(emerg_phone_number)){
+    if(emerg_phone_number !== "" && !validator.phone_number_digs(emerg_phone_number)){
         return register_result.invalid_phone_number;
     }
 
