@@ -19,7 +19,7 @@
             $('#registrationForm').on('submit', function(event){
                 event.preventDefault();
 
-                let data = $('#date').val().split('-')
+                let data = $('#date').val().split('-');
 
                 const formData = {
                     nome: $('#nome').val(),
@@ -31,14 +31,19 @@
                     telefone_emerg: $('#telefoneEmerg').val()
                 };
 
-                // Enviar AJAX
+                // Enviar AJAX para o endpoint de registro
                 $.ajax({
                     url: "http://localhost:3000/register", 
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(formData),
                     success: function(data) {
+                        // Exibe mensagem de sucesso
                         $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
+                        // Redireciona para a pasta "confirm" após 2 segundos
+                        setTimeout(function() {
+                            window.location.href = "../confirm/index.html";
+                        }, 1000);
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         let response;
@@ -89,7 +94,7 @@
             <div class="submit">
                 <label id="abc"></label> 
                 <button type="submit" id="botao_cadastrar">Cadastrar</button>
-                <p>Já tem conta? <a href="/login/index.html">Faça o login</a></p>
+                <p>Já tem conta? <a href="../login/index.html">Faça o login</a></p>
             </div>
         </form>
     </main>

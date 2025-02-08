@@ -30,6 +30,9 @@
                     data: JSON.stringify(formData),
                     success: function(data) {
                         $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
+                        setTimeout(function() {
+                            window.location.href = "../login/index.html";
+                        }, 0);
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         let response;
