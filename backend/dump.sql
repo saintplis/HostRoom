@@ -49,6 +49,7 @@ CREATE TABLE "public"."email_codigos" (
     "codigo" text NOT NULL,
     "expira_em" integer NOT NULL,
     "usado" smallint DEFAULT '0' NOT NULL,
+    "tipo" smallint DEFAULT '0' NOT NULL,
     CONSTRAINT "email_codigos_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
@@ -101,4 +102,4 @@ CREATE TABLE "public"."usuarios" (
 ) WITH (oids = false);
 
 
--- 2025-01-25 11:46:15.843623-03
+-- 2025-02-09 15:20:42.562315-03
