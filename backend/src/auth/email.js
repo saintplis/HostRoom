@@ -8,7 +8,7 @@ import * as path from 'path';
 
 const email_type = {
     VERIFY_ACCOUNT: 0,
-    FORGOT_PASSWORD,
+    FORGOT_PASSWORD: 1,
 };
 
 const email_result = {
