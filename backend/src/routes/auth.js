@@ -1,6 +1,7 @@
-import { validate_code, email_result } from "../auth/email.js";
+import { validate_code, email_result, forgot_password, forgot_change_password } from "../auth/email.js";
 import {login, login_result} from "../auth/login.js";
 import {register, register_result} from "../auth/register.js";
+import { change_password } from "../panel/change_password.js";
 
 let auth_route = {};
 
@@ -72,6 +73,45 @@ auth_route.verify_post = async (request, response) => {
     const { email, codigo } = body;
 
     let result = await validate_code(email, codigo);
+
+    return respond(response, result);
+}
+
+auth_route.forgot_password_post = async (request, response) => {
+    if(request.session.get('id')){ //sessao ja existente
+        return respond(response, 'Esta logado!!');
+    }
+
+    let body = request.body;
+
+    if(!body 
+        || !body.hasOwnProperty('email')){
+        return respond(response, 'Preencha todos os campos');
+    }
+
+    const { email } = body;
+
+    let result = await forgot_password(email);
+
+    return respond(response, result);
+}
+
+auth_route.forgot_change_password_post = async (request, response) => {
+    if(request.session.get('id')){ //sessao ja existente
+        return respond(response, 'Esta logado!!');
+    }
+
+    let body = request.body;
+
+    if(!body 
+        || !body.hasOwnProperty('codigo')
+        || !body.hasOwnProperty('nova_senha')){
+        return respond(response, 'Preencha todos os campos');
+    }
+
+    const { codigo, nova_senha } = body;
+
+    let result = await forgot_change_password(codigo, nova_senha);
 
     return respond(response, result);
 }
