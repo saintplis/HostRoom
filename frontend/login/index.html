@@ -41,8 +41,18 @@
                         } catch (e) {
                             response = { message: "Ocorreu um erro inesperado." };
                         }
+                        const msg = response.message
+
                         $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
+                        if(msg === 'Por favor cheque seu email para obter o codigo de verificacao'){
+                            setTimeout(function() {
+                                window.location.href = "../confirm/index.html";
+                            }, 5000);
+
+                        }
+
                     }
+
                 });
             });
         });
