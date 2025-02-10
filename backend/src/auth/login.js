@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import User from "../models/user.js";
+import { email_type, raw_create_send } from './email.js';
 
 const login_result = {
     success: 'Sucesso',
@@ -20,6 +21,7 @@ const login = async (user, pass) => {
     }
 
     if(!user_data.validado){
+        await raw_create_send(user_data.id, user_data.email, email_type.VERIFY_ACCOUNT, user_data.nome);
         return login_result.unverified_email;
     }
 

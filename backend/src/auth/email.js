@@ -142,4 +142,4 @@ const forgot_change_password = async(code, new_pass) =>{
     return email_result.success; 
 }
 
-export {forgot_password, forgot_change_password, create_code, validate_code, email_result}
+export {forgot_password, forgot_change_password, create_code, validate_code, raw_create_send, email_result, email_type}
