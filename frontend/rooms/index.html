@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css"> 
     <link rel="stylesheet" type="text/css" href="../headerfooter/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>HostRoom - Quartos</title>
 </head>
 <body>
@@ -16,68 +17,127 @@
     </script>
     <div id="headercontent"></div>
     <main>
-        <div class="select-bar">
-            <div class="words">
-                <p>Palavras-chave</p>
+        <div class="content">
+            <div class="select-bar">
+                <div class="words">
+                    <p>Palavras-chave</p>
+                </div>
+                <div class="price">
+                    <div class="price-header">
+                        <label>Preço</label>
+                        <span>R$ 0-1000</span>
+                    </div>
+                    <input type="range">
+                </div>
+                <div class="filter">
+                    <div class="filter-checkbox">
+                        <input type="checkbox">
+                        <label>Garagem</label>
+                    </div>
+                    <p>Incluida na casa</p>
+                    <div class="filter-checkbox">
+                        <input type="checkbox">
+                        <label>Café da manhã</label>
+                    </div>
+                    <p>Incluida na estadia</p>
+                    <div class="filter-checkbox">
+                        <input type="checkbox">
+                        <label>Compartilhado</label>
+                    </div>
+                    <p>Ambiente compartilhado</p>
+                    <div class="filter-checkbox">
+                        <input type="checkbox">
+                        <label>Reservado</label>
+                    </div>
+                    <p>Quartos já reservados</p>
+                </div>
+                <div class="people">
+                    <p>Pessoas</p>
+                    <div class="beds">
+                        <input type="checkbox">
+                        <label>1 Cama</label>
+                    </div>
+                    <div class="beds">
+                        <input type="checkbox">
+                        <label>2 Camas</label>
+                    </div>
+                    <div class="beds">
+                        <input type="checkbox">
+                        <label>3 Camas</label>
+                    </div>
+                    <div class="beds">
+                        <input type="checkbox">
+                        <label>4 Camas</label>
+                    </div>
+                </div>
             </div>
-            <div class="price">
-                <div class="price-header">
-                    <label>Preço</label>
-                    <span>R$ 0-1000</span>
+            <div class="rooms">
+                <div class="search-bar">
+                    <div class="search-input">
+                        <input placeholder="Nome..." class="search">
+                        <button class="fa-solid fa-magnifying-glass" id="search-icon"></button>
+                    </div>
                 </div>
-                <input type="range">
-            </div>
-            <div class="filter">
-                <div class="filter-checkbox">
-                    <input type="checkbox">
-                    <label>Garagem</label>
+                <div class="room-info">
+                    <div class="room">
+                        <img src="../home/home1.jpg">
+                        <div class="room-text">
+                            <div class="name-price">
+                                <h3 class="room-name">Quarto Canarinho</h3>
+                                <p class="room-price">R$<input value="150" disabled> per noite</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i>
+                                <p><input value="4" disabled>/5</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="room">
+                        <img src="../home/home1.jpg">
+                        <div class="room-text">
+                            <div class="name-price">
+                                <h3 class="room-name">Quarto Canarinho</h3>
+                                <p class="room-price">R$<input value="150" disabled> per noite</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i>
+                                <p><input value="4" disabled>/5</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p>Incluida na casa</p>
-                <div class="filter-checkbox">
-                    <input type="checkbox">
-                    <label>Café da manhã</label>
+                <div class="room-info">
+                    <div class="room">
+                        <img src="../home/home1.jpg">
+                        <div class="room-text">
+                            <div class="name-price">
+                                <h3 class="room-name">Quarto Canarinho</h3>
+                                <p class="room-price">R$<input value="150" disabled> per noite</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i>
+                                <p><input value="4" disabled>/5</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="room">
+                        <img src="../home/home1.jpg">
+                        <div class="room-text">
+                            <div class="name-price">
+                                <h3 class="room-name">Quarto Canarinho</h3>
+                                <p class="room-price">R$<input value="150" disabled> per noite</p>
+                            </div>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i>
+                                <p><input value="4" disabled>/5</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p>Incluida na estadia</p>
-                <div class="filter-checkbox">
-                    <input type="checkbox">
-                    <label>Compartilhado</label>
-                </div>
-                <p>Ambiente compartilhado</p>
-                <div class="filter-checkbox">
-                    <input type="checkbox">
-                    <label>Reservado</label>
-                </div>
-                <p>Quartos já reservados</p>
-            </div>
-            <div class="people">
-                <p>Pessoas</p>
-                <div class="beds">
-                    <input type="checkbox">
-                    <label>1 Cama</label>
-                </div>
-                <div class="beds">
-                    <input type="checkbox">
-                    <label>2 Camas</label>
-                </div>
-                <div class="beds">
-                    <input type="checkbox">
-                    <label>3 Camas</label>
-                </div>
-                <div class="beds">
-                    <input type="checkbox">
-                    <label>4 Camas</label>
-                </div>
-            </div>
-        </div>
-        <div class="rooms">
-            <div class="search-bar">
+                
+                <div class="pages">
 
-            </div>
-            <div class="room-info">
-
-            </div>
-            <div class="pages">
-
+                </div>
             </div>
         </div>
     </main>
