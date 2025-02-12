@@ -1,136 +1,52 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Mulish", sans-serif;
-    scroll-behavior: smooth;
-    list-style: none;
-    text-decoration: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Mulish", sans-serif;
+  scroll-behavior: smooth;
+  list-style: none;
+  text-decoration: none;
 }
 main{
-  margin: auto;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  padding-top: 10vh;
 }
-.content{
-  margin-top: 10vh;
-  display: flex;
-  flex-direction: row;
-  height: 90vh;
+header {
+  z-index: 1000;
+  text-decoration: none;
 }
-.select-bar{
-  background-color: #14ac5c;
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  padding: 7vh 3vh 7vh 3vh;
-  font-size: 1.9vh;
-  justify-content: space-between;
+.col-md-3{
+  padding: 5vh;
+  background-color: #5cb85c;
 }
-.price{
-  display: flex;
-  flex-direction: column;
-  width: 80%;
+.col-md-9{
+  padding: 5vh;
 }
-.price input{
-  accent-color: black;
+.col-md-6{
+  margin-bottom: 2vh;
 }
-.price-header{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between  ;
-}
-.filter{
-  display: flex;
-  flex-direction: column;
-}
-.rooms{
-  width: 100%;
-}
-.search-bar{
-  margin: 5vh;
-}
-.search-input{
-  width: 30%;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.search-input input{
-  border-style: none;
-  background-color: transparent;
-  border-radius: 3vh;
-  border: 0.2vh solid black;
-  font-size: 1.5vh;
-  padding: 1.5vh 4.5vh 1.5vh 1.5vh;
-  width: 100%;
-  outline: none;
-}
-.search-input input::placeholder{
-  font-size: 1.5vh;
-}
-.search-input input:hover{
-  border-color: #14ac5c;
-}
-#search-icon{
-  position: absolute;
-  right: 2vh;
-  font-size: 2vh;
-  background-color: transparent;
-  border-style: none;
-  cursor: pointer;
-}
-#search-icon:hover{
-  color: #14ac5c;
-  transform: scale(1.1);
-}
-.room-info{
-  display: flex;
-  flex-direction: row;
-  margin: 5vh;
-  justify-content: space-between;
-}
-.room{
-  width: 45%;
-  border: 0.2vh solid gray;
-  border-radius: 2vh;
-  display: flex;
-  flex-direction: column;
-  padding: 2vh;
-}
-.room img{
-  width: 100%;
-  height: 20vh;
-}
-.room-text{
+.card-body{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 2vh;
 }
-.room-text input{
-  background-color: transparent;
-  border-style: none;
-  font-size: 2vh;
-  width: 4vh;
-  height: auto;
-  text-align: center;
-  color: black;
-}
-.name-price{
-  font-size: 1.7vh;
+.card img{
+  width: auto;
+  height: 25vh;
 }
 .rating{
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.rating input{
-  width: 2vh;
-  text-align: right;
-  font-size: 1.7vh;
+.rating p{
+  color: black;
+  padding: 0;
+  margin: 0;
 }
-.rating i{
-  font-size: 1.7vh;
+.rating input{
+  color: black;
+  border-style: none;
+  background-color: transparent;
+  width: 1.5vh;
+  margin-left: 2vh;
 }
