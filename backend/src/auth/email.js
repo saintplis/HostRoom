@@ -127,7 +127,7 @@ const forgot_change_password = async(code, new_pass) =>{
         return change_pass_result.bad_pass_length;
     }
 
-    let result = await validate_code_with_code_data(user_data.email);
+    let result = await validate_code_with_code_data(code_data.email);
 
     if(result !== email_result.success){
         return result;

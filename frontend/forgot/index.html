@@ -9,19 +9,53 @@
 </head>
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-        $(document).ready(function(){
+    <script>
+        $(function(){
             $("#headercontent").load("../headerfooter/header.html");
 
+            $('#formforgot').on('submit', function(event){
+                event.preventDefault();
+
+                const formforgot = {
+                    email: $('#email').val()
+                };
+
+                // Enviar AJAX
+                $.ajax({
+                    url: "http://localhost:3000/forgot_password", 
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(formforgot),
+                    success: function(data) {
+                        $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
+                        setTimeout(function() {
+                            window.location.href = "../newpassword/index.html";
+                        }, 1000);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        let response;
+                        try {
+                            response = JSON.parse(jqXHR.responseText);
+                        } catch (e) {
+                            response = { message: "Ocorreu um erro inesperado." };
+                        }
+                        const msg = response.message
+                        $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
+
+                    }
+
+                });
+            });
         });
     </script>
     <div id="headercontent"></div>
     <main>
-        <form class="content" method="post">
+        <form class="content" id="formforgot" method="post">
             <h2>Redefinir a senha?</h2>
             <label>Seu email de acesso</label>
-            <input type="email" placeholder="Email" required>
+            <input type="email" id="email" placeholder="Email" required>
             <p>Você irá receber um e-mail no endereço informado acima contendo o procedimento para criar uma nova senha para esse usuário</p>
+            <label id="abc"></label> 
             <button type="submit" name="submit">Enviar</button>
         </form>
     </main>
