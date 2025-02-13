@@ -50,3 +50,51 @@ header {
   width: 1.5vh;
   margin-left: 2vh;
 }
+.search{
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 1vh 0;
+  width: 50%;
+}
+.search-input{
+  border-radius: 2vh;
+  border-style: none;
+  border: 0.2vh solid black;
+  padding: 1vh;
+  width: 100%;
+}
+.search-input input{
+  font-size: 1.5vh; 
+}
+.search-button{
+  width: 3%;
+  background-color: transparent;
+  border-style: none;
+  position: absolute;
+}
+.search-button:hover{
+  color: #5cb85c;
+}
+.pages{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+}
+.pages button{
+  background-color: transparent;
+  color: black;
+  font-size: 1.7vh;
+  border-style: none;
+  margin-left: 1vh;
+  border-radius: 1vh;
+  padding: 1vh;
+}
+.pages button:hover{
+  background-color: #5cb85c;
+  color: white;
+}
+.pages button:active{
+  background-color: black;
+}
