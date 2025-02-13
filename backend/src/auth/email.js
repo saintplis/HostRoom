@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import EmailCode from "../models/email_code.js";
 import User from "../models/user.js";
 import config from '../config.js';
@@ -127,7 +128,7 @@ const forgot_change_password = async(code, new_pass) =>{
         return change_pass_result.bad_pass_length;
     }
 
-    let result = await validate_code_with_code_data(code_data.email);
+    let result = await validate_code_with_code_data(code_data, email_type.FORGOT_PASSWORD);
 
     if(result !== email_result.success){
         return result;
