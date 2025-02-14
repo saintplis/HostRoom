@@ -16,6 +16,18 @@
         $(function(){
             $("#headercontent").load("../headerfooter/header.html");
         })
+        function changePop(button){
+            const atr = button.getAttribute("data-input-id");
+            const inp = document.getElementById(atr);
+
+            if(inp.style.color == "white"){
+                inp.style.background="lightgray";
+                inp.style.color="black";
+            } else{
+                inp.style.background="black";
+                inp.style.color="white";
+            }
+        }
     </script>
     <div id="headercontent"></div>
     <main class="container-fluid">
@@ -70,10 +82,16 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="mb-4">
-                    <div class="search">
+                <div class="row" id="search">
+                    <div class="col-md-6">
                         <input type="text" class="search-input" placeholder="Nome...">
                         <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <div class="col-md-6" id="pop-ups">
+                        <button class="pop-up" id="new" data-input-id="new" onclick="changePop(this)">Novo</button>
+                        <button class="pop-up" id="price-up" data-input-id="price-up" onclick="changePop(this)">Preço crescente</button>
+                        <button class="pop-up" id="price-down" data-input-id="price-down" onclick="changePop(this)">Preço descrescente</button>
+                        <button class="pop-up" id="note" data-input-id="note" onclick="changePop(this)">Nota</button>
                     </div>
                 </div>
                 <div class="row">
@@ -102,7 +120,7 @@
                                 </div>
                                 <div class="rating">
                                     <i class="fa-solid fa-star"></i>
-                                    <p><input value="3" disabled>/5</p>
+                                    <p><input value="3.5" disabled>/5</p>
                                 </div>
                             </div>
                         </div>
