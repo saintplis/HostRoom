@@ -50,6 +50,10 @@ header {
 #search{
   padding-top: 3vh;
 }
+.search-container{
+  position: relative;
+  width: 100%;
+}
 .search-input{
   border-radius: 2vh;
   border-style: none;
@@ -62,8 +66,9 @@ header {
 }
 .search-button{
   position: absolute;
-  right: 4px;
-  top: 4px;
+  right: 3vh;
+  top: 50%;
+  transform: translateY(-50%);
   background-color: transparent;
   border-style: none;
 }
@@ -89,7 +94,7 @@ header {
   background-color: #5cb85c;
   color: white;
 }
-.pages button:active{
+.pages button:active, .pages button:hover{
   background-color: black;
 }
 #pop-ups{
@@ -109,4 +114,22 @@ header {
 #pop-ups button:hover{
   background-color: #5cb85c;
   color: white;
+}
+.words-content button:hover{
+  background-color: black;
+  color: white;
+}
+.words-content button{
+  background-color: white;
+  color: black;
+  border-style: none;
+  border-radius: 1vh;
+  padding: 0.8vh;
+  font-size: 1.5vh;
+  margin-right: 0.8vh;
+}
+.words-content i{
+  font-size: 1.3vh;
+  padding-left: 1vh;
+  padding-right: 0.5vh;
 }

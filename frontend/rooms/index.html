@@ -19,14 +19,22 @@
         function changePop(button){
             const atr = button.getAttribute("data-input-id");
             const inp = document.getElementById(atr);
+            const icon = button.querySelector('.fa-check');
+            const btntext = inp.innerHTML;
 
             if(inp.style.color == "white"){
                 inp.style.background="lightgray";
                 inp.style.color="black";
+                icon.remove();
             } else{
                 inp.style.background="black";
                 inp.style.color="white";
+
+                button.innerHTML = ' <i class="fa-solid fa-check" style="padding: 0 0.2vh"></i> ' + btntext; 
             }
+        }
+        function pageBtn(button){
+
         }
     </script>
     <div id="headercontent"></div>
@@ -34,7 +42,14 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="words">
-                    <p>Palavras-chave</p>
+                    <div class="words-title">
+                        <p>Palavras-chave</p>
+                    </div>
+                    <div class="words-content">
+                        <button>Espaçosa<i class="fa-solid fa-x"></i></button>
+                        <button>Smart<i class="fa-solid fa-x"></i></button>
+                        <button>Moderna<i class="fa-solid fa-x"></i></button>
+                    </div>
                 </div>
                 <div class="price">
                     <div class="price-header">
@@ -83,7 +98,7 @@
             </div>
             <div class="col-md-9">
                 <div class="row" id="search">
-                    <div class="col-md-6">
+                    <div class="col-md-6 search-container">
                         <input type="text" class="search-input" placeholder="Nome...">
                         <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
@@ -159,7 +174,7 @@
                 <div class="mb-4">
                     <div class="pages">
                         <button class="btn-left"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
-                        <button class="page-btn">1</button>
+                        <button class="page-btn" style="background-color: black; color: white;">1</button>
                         <button class="page-btn">2</button>
                         <button class="page-btn">3</button>
                         <button class="page-btn">4</button>
