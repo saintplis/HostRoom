@@ -36,27 +36,39 @@
         function pageBtn(button){
 
         }
+        function deleteBtn(button){
+            const atr = button.getAttribute("data-input-id");
+            const btn = document.getElementById(atr);
+            btn.remove();
+        }
     </script>
     <div id="headercontent"></div>
     <main class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 left-options">
                 <div class="words">
                     <div class="words-title">
                         <p>Palavras-chave</p>
                     </div>
                     <div class="words-content">
-                        <button>Espaçosa<i class="fa-solid fa-x"></i></button>
-                        <button>Smart<i class="fa-solid fa-x"></i></button>
-                        <button>Moderna<i class="fa-solid fa-x"></i></button>
+                        <button data-input-id="espacosa" id="espacosa" onclick="deleteBtn(this)">Espaçosa<i class="fa-solid fa-x"></i></button>
+                        <button data-input-id="smart" id="smart" onclick="deleteBtn(this)">Smart<i class="fa-solid fa-x"></i></button>
+                        <button data-input-id="moderna" id="moderna" onclick="deleteBtn(this)">Moderna<i class="fa-solid fa-x"></i></button>
                     </div>
                 </div>
                 <div class="price">
                     <div class="price-header">
                         <label>Preço</label>
-                        <span>R$ 0-1000</span>
+                        <div class="price-range">
+                            <label>R$</label>
+                            <input type="text" class="min" inputmode="decimal" value="100,00">
+                            <label>R$</label>
+                            <input type="text" class="max" inputmode="decimal" value="300,00">
+                        </div>
                     </div>
-                    <input type="range" class="form-range">
+                    <div class="range-container">
+                        <input type="range"> 
+                    </div>
                 </div>
                 <div class="filter">
                     <div class="filter-checkbox">
