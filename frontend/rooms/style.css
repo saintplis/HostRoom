@@ -133,3 +133,40 @@ header {
   padding-left: 1vh;
   padding-right: 0.5vh;
 }
+.card:hover{
+  background-color: rgb(228, 228, 228);
+  transform: scale(1.01, 1.01);
+}
+.left-options{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: black;
+}
+.range-container input{
+  width: 100%;
+}
+.price-range{
+  margin-bottom: 2vh;
+}
+.price-range label{
+  color: black;
+  margin-left: 3vh;
+}
+.price-range input{
+  background-color: transparent;
+  color: black;
+  border-style: none;
+  width: 10vh;
+  text-align: right;
+}
+.price-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+input[type="checkbox"]:checked{
+  background-color: black;
+  color: white;
+}
