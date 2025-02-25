@@ -33,6 +33,8 @@
                     data: JSON.stringify(formData),
                     success: function(data) {
                         $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
+                        
+                        localStorage.setItem('token', data.token);
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         let response;

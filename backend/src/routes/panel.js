@@ -13,7 +13,7 @@ const respond = (response, result) => {
 }
 
 panel_route.change_pass_post = async (request, response) => {
-    const user_id = request.session.get('id');
+    const user_id = (await request.jwtVerify()).id;
 
     if(!user_id){
         return respond(response, 'Usuário nao logado');

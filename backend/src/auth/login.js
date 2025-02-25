@@ -25,7 +25,7 @@ const login = async (user, pass) => {
         return login_result.unverified_email;
     }
 
-    return login_result.success; 
+    return user_data.id; 
 }
 
 export {login, login_result}

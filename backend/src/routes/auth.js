@@ -1,7 +1,6 @@
 import { validate_code, email_result, forgot_password, forgot_change_password } from "../auth/email.js";
 import {login, login_result} from "../auth/login.js";
 import {register, register_result} from "../auth/register.js";
-import { change_password } from "../panel/change_password.js";
 
 let auth_route = {};
 
@@ -16,10 +15,6 @@ const respond = (response, result) => {
 }
 
 auth_route.login_post = async (request, response) => {
-    if(request.session.get('id')){ //sessao ja existente
-        return respond(response, 'Usuário ja existe');
-    }
-
     let body = request.body;
 
     if(!body || !body.hasOwnProperty('usuario') || !body.hasOwnProperty('senha')){
@@ -28,16 +23,20 @@ auth_route.login_post = async (request, response) => {
 
     const { usuario, senha } = request.body;
 
+    let id = -1;
     let result = await login(usuario, senha);
 
-    return respond(response, result);
+    if(Number.isInteger(result)){
+        id = result;
+        result = login_result.success;
+    } 
+
+    let token = await response.jwtSign({ id });
+
+    return response.send({ message: result, token: token });
 }
 
 auth_route.register_post = async (request, response) => {
-    if(request.session.get('id')){ //sessao ja existente
-        return respond(response, 'Usuário ja existe');
-    }
-
     let body = request.body;
 
     if(!body 
@@ -58,10 +57,6 @@ auth_route.register_post = async (request, response) => {
 }
 
 auth_route.verify_post = async (request, response) => {
-    if(request.session.get('id')){ //sessao ja existente
-        return respond(response, 'Nao se pode verificar quando se esta logado');
-    }
-
     let body = request.body;
 
     if(!body 
@@ -78,10 +73,6 @@ auth_route.verify_post = async (request, response) => {
 }
 
 auth_route.forgot_password_post = async (request, response) => {
-    if(request.session.get('id')){ //sessao ja existente
-        return respond(response, 'Esta logado!!');
-    }
-
     let body = request.body;
 
     if(!body 
@@ -97,10 +88,6 @@ auth_route.forgot_password_post = async (request, response) => {
 }
 
 auth_route.forgot_change_password_post = async (request, response) => {
-    if(request.session.get('id')){ //sessao ja existente
-        return respond(response, 'Esta logado!!');
-    }
-
     let body = request.body;
 
     if(!body 

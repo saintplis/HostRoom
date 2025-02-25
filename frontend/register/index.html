@@ -14,6 +14,10 @@
 
     <script>
         $(document).ready(function(){
+            if(localStorage.getItem('token')){
+                                    
+            }
+
             $("#headercontent").load("../headerfooter/header.html");
 
             $('#registrationForm').on('submit', function(event){
