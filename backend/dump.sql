@@ -1,4 +1,4 @@
--- Adminer 4.8.1 PostgreSQL 17.2 dump
+-- Adminer 4.8.1 PostgreSQL 17.3 dump
 
 DROP TABLE IF EXISTS "agendamentos";
 DROP SEQUENCE IF EXISTS agendamentos_id_seq;
@@ -78,6 +78,12 @@ CREATE TABLE "public"."quartos" (
     "fotos" text NOT NULL,
     "compartilhado" boolean NOT NULL,
     "garagem" integer NOT NULL,
+    "comodos" smallint NOT NULL,
+    "banheiros" smallint NOT NULL,
+    "cafe_da_manha" smallint NOT NULL,
+    "preco_por_noite" text NOT NULL,
+    "preco_mensal" text NOT NULL,
+    "descricao" text NOT NULL,
     CONSTRAINT "quartos_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
@@ -102,4 +108,4 @@ CREATE TABLE "public"."usuarios" (
 ) WITH (oids = false);
 
 
--- 2025-02-09 15:20:42.562315-03
+-- 2025-02-25 12:30:26.802615-03

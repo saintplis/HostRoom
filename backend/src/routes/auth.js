@@ -4,11 +4,15 @@ import {register, register_result} from "../auth/register.js";
 
 let auth_route = {};
 
-const respond = (response, result) => {
+const respond = (response, result, extra = undefined) => {
     let formatted_msg = { message: result };
 
     if(result !== login_result.success && result !== register_result.success && result !== email_result.success){
         return response.status(400).send(formatted_msg);
+    }
+
+    if(extra){
+        Object.assign(formatted_msg, extra);
     }
 
     return response.send(formatted_msg);
@@ -33,7 +37,9 @@ auth_route.login_post = async (request, response) => {
 
     let token = await response.jwtSign({ id });
 
-    return response.send({ message: result, token: token });
+    return respond(response, result, {
+        token: token
+    });
 }
 
 auth_route.register_post = async (request, response) => {

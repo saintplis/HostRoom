@@ -1,12 +1,17 @@
 import { change_pass_result, change_password } from "../panel/change_password.js";
+import { get_rooms, room_result } from "../panel/room.js";
 
 let panel_route = {};
 
-const respond = (response, result) => {
+const respond = (response, result, extra = undefined) => {
     let formatted_msg = { message: result };
 
-    if(result !== change_pass_result.success){
+    if(result !== change_pass_result.success && result !== room_result.success){
         return response.status(400).send(formatted_msg);
+    }
+
+    if(extra){
+        Object.assign(formatted_msg, extra);
     }
 
     return response.send(formatted_msg);
@@ -30,6 +35,20 @@ panel_route.change_pass_post = async (request, response) => {
     let result = await change_password(user_id, senha_antiga, senha_nova);
 
     return respond(response, result);
+}
+
+panel_route.fetch_rooms_get = async(request, response) =>{
+    const user_id = (await request.jwtVerify()).id;
+
+    if(!user_id){
+        return respond(response, 'Usuário nao logado');
+    }
+
+    let data = await get_rooms(user_id);
+
+    return respond(response, room_result.success, {
+        data: data
+    });
 }
 
 export default panel_route
