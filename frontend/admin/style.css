@@ -1,0 +1,58 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Mulish", sans-serif;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+}
+main{
+    padding-top: 10vh;
+    
+}
+.col-md-3{
+    padding: 5vh;
+    background-color: #5cb85c;
+    color: white;
+    height: 100%;
+}
+.hotel-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.hotel-section img{
+    border-radius: 2vh;
+    width: 15vh;
+    margin-right: 2vh;
+}
+.hotel-section h3{
+    font-size: 3vh;
+    color: white;
+    margin-bottom: 0;
+}
+header {
+    z-index: 1000;
+    text-decoration: none;
+}
+.sub-pages{
+    width: 100%;
+    margin-top: 5vh;
+}
+.page{
+    height: 10vh;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 2vh;
+    border-radius: 2vh;
+    padding: 0 2vh;
+    & i{
+        margin-right: 2vh;
+    }
+    &.page:hover{
+        background-color: black;
+        transform: scale(1.04);
+    }
+}
