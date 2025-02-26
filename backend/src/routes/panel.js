@@ -1,5 +1,6 @@
 import { change_pass_result, change_password } from "../panel/change_password.js";
 import { get_rooms, room_result } from "../panel/room.js";
+import { get_self, self_result } from '../panel/self.js';
 
 let panel_route = {};
 
@@ -47,6 +48,20 @@ panel_route.fetch_rooms_get = async(request, response) =>{
     let data = await get_rooms(user_id);
 
     return respond(response, room_result.success, {
+        data: data
+    });
+}
+
+panel_route.fetch_self_get = async(request, response) => {
+    const user_id = (await request.jwtVerify()).id;
+
+    if(!user_id){
+        return respond(response, 'Usuário nao logado');
+    }
+
+    let data = await get_self(user_id);
+
+    return respond(response, self_result.success, {
         data: data
     });
 }
