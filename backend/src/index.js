@@ -39,7 +39,9 @@ app.post('/forgot_change_password', { preValidation: disallow_auth }, auth_route
 
 app.post('/panel/change_password', panel_route.change_pass_post);
 app.get('/panel/rooms', panel_route.fetch_rooms_get);
+
 app.get('/panel/self', panel_route.fetch_self_get);
+app.post('/panel/self', panel_route.update_self_post);
 
 app.listen({ port: 3000 }, (err,) => {
     if(err){

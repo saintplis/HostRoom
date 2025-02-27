@@ -1,6 +1,6 @@
 import { change_pass_result, change_password } from "../panel/change_password.js";
 import { get_rooms, room_result } from "../panel/room.js";
-import { get_self, self_result } from '../panel/self.js';
+import { get_self, update_self, self_result } from '../panel/self.js';
 
 let panel_route = {};
 
@@ -65,5 +65,25 @@ panel_route.fetch_self_get = async(request, response) => {
         data: data
     });
 }
+
+panel_route.update_self_post = async(request, response) => {
+    const user_id = (await request.jwtVerify()).id;
+
+    if(!user_id){
+        return respond(response, 'Usuário nao logado');
+    }
+    
+    let body = request.body;
+
+    if(!body){
+        return respond(response, 'Sem dados para atualizar');
+    }
+
+    await update_self(user_id, body['email'], body['numero_telefone'], body['numero_telefone_emerg']);
+
+    return respond(response, self_result.success);
+}
+
+
 
 export default panel_route

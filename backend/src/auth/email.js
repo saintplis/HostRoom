@@ -43,7 +43,7 @@ const raw_create_send = async (user_id, email, type = email_type.VERIFY_ACCOUNT,
         .replace("$codigo", code)
         .replace("$usuario", name || email);
 
-    await config.email.sendMail({
+    config.email.sendMail({
         to: email,
         subject: "Codigo do HostRoom",
         text: `Seu codigo eh ${code}`,
