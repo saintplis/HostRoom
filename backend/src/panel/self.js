@@ -36,7 +36,13 @@ const update_self = async(user_id, new_email = undefined, phone_number = undefin
         new_data.telefone_emerg = emerg_phone_number;
     }
    
-    return await User.update(user_id, new_data);
+    if(Object.keys(new_data).length === 0){
+        return self_result.success;
+    }
+
+    await User.update(user_id, new_data);
+
+    return self_result.success;
 }
 
 export {self_result, get_self, update_self}
