@@ -4,16 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="../headerfooter/style.css">
+    <link rel="stylesheet" type="text/css" href="../headerfooterclaro/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>HostRoom - Minha conta</title>
 </head>
+
+<!--
+
+-->
+
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(function(){
-            $("#headercontent").load("../headerfooter/header.html");
-        })
+            $("#headercontent").load("../headerfooterclaro/header.html");
+
+            // Enviar AJAX
+            $.ajax({
+                    url: "http://localhost:3000/panel/self", 
+                    type: "GET",
+                    
+                    beforeSend: function (xhr){ 
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token')); 
+                        
+                    },
+                    success: function(response) {
+                        const data = response.data
+
+                        $('#nome').val(data.nome);
+                        $('#data-nascimento').val(data.data_de_nascimento);
+                        $('#cpf').val(data.cpf);
+                        $('#email').val(data.email);
+                        $('#tel').val(data.telefone);
+                        $('#tel-emergencia').val(data.telefone_emerg);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        let response;
+                        
+                        try {
+                            response = JSON.parse(jqXHR.responseText);
+                        } catch (e) {
+                            response = { message: "Ocorreu um erro inesperado." };
+                        }
+                        const msg = response.message
+                        $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
+                        console.log(msg);
+                    }
+
+                });
+        });
     </script>
     <div id="headercontent"></div>
     <main>
@@ -27,31 +66,38 @@
                 </div>
                 <div class="infos">
                     <label>Nome</label>
-                    <input placeholder="Isabela Queiroz" disabled>
+                    <input id="nome" placeholder="Isabela Queiroz" disabled>
+
                     <label>Data de nascimento</label>
-                    <input placeholder="07/08/2002" disabled>
+                    <input id="data-nascimento" placeholder="07/08/2002" disabled>
+
                     <label>CPF</label>
-                    <input placeholder="059.125.850-38" disabled>
+                    <input id="cpf" placeholder="059.125.850-38" disabled>
+
                     <label>Email</label>
                     <div class="edit-info">
                         <input id="email" placeholder="IsabelaQ@gmail.com" type="email" disabled>
                         <button data-input-id="email" onclick="disableBtn(this)">Editar</button>
                     </div>
+
                     <label>Senha</label>
                     <div class="edit-info">
-                        <input id="senha" placeholder="Value" type="password" disabled>
+                        <input id="senha" placeholder="********" type="password" disabled>
                         <button data-input-id="senha" onclick="disableBtn(this)">Editar</button>
                     </div>
+
                     <label>Telefone</label>
                     <div class="edit-info">
                         <input id="tel" placeholder="30 92105-8254" type="tel" disabled>
                         <button data-input-id="tel" onclick="disableBtn(this)">Editar</button>
                     </div>
+
                     <label>Telefone de Emergência</label>
                     <div class="edit-info">
-                        <input id="tel-emergencia" placeholder="30 95123-7629" type="tel" disabled>
+                        <input id="tel-emergencia" placeholder="" type="tel" disabled>
                         <button data-input-id="tel-emergencia" onclick="disableBtn(this)">Editar</button>
                     </div>
+
                 </div>
             </div>
         </section>
