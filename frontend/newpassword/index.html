@@ -4,14 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" type="text/css" href="../headerfooter/style.css">
+        <link rel="stylesheet" type="text/css" href="../headerfooterclaro/style.css">
         <title>HostRoom - Nova senha</title>
     </head>
     <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
             $(function(){
-                $("#headercontent").load("../headerfooter/header.html");
+                $("#headercontent").load("../headerfooterclaro/header.html");
 
                 $('#formNewP').on('submit', function(event){
                     event.preventDefault();
@@ -52,8 +52,8 @@
         <main>
             <form class="content" id="formNewP" method="post">
                 <h2>Redefinir senha</h2>
-                <label>Insira sua nova senha</label>
-                <input placeholder="Codigo" id="codigo" type="text" required>
+                <p>Insira o código que foi enviado ao seu e-mail e escolha sua nova senha. Lembre-se: a senha deve conter, no mínimo, 8 caracteres!</p>
+                <input placeholder="Código" id="codigo" type="text" required>
                 <input placeholder="Senha" id="senha" type="password" required>
                 <div id="abc"></div>
                 <button name="submit" type="submit">Confirmar</button>

@@ -51,7 +51,7 @@ main {
 form#registrationForm {
     background-color: white; /* Adiciona um fundo branco ao formulário */
     border-radius: 2vh;
-    border: 0.2vh solid #1e6845;
+    border: 0.3vh solid #14AE5C;
     padding: 4vh;
     width: 80vh;
     display: flex;
@@ -125,6 +125,7 @@ form#registrationForm {
     background-color: #1e6845;
     border: none;
     border-radius: 1vh;
+    border: 0.2vh solid #000;
     color: white;
     padding: 1.7vh;
     width: 30vh;

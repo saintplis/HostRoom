@@ -28,7 +28,7 @@ main{
     height: 100%;
     width: 50vh;
     border-radius: 2vh;
-    border: 0.2vh solid #1e6845;
+    border: 0.3vh solid #14AE5C;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -140,7 +140,8 @@ main{
     color: white;
     padding: 2vh;
     border: none;
-    border-radius: 1vh;
+    border-radius: 2vh;
+    border: 0.2vh solid #000;
     font-size: 1.5vh;
     width: 40vh;
     transition: background-color 0.2s, transform 0.2s;

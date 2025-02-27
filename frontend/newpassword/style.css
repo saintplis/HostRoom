@@ -22,7 +22,7 @@ main{
     border-radius: 2vh;
     height: 100%;
     width: 50vh;
-    border: 0.2vh solid #1e6845;
+    border: 0.3vh solid #14AE5C;
     display: flex;
     flex-direction: column;
     padding: 5vh;
@@ -31,12 +31,18 @@ main{
     display: flex;
     justify-content: center;
     font-weight: lighter;
-    font-size: 3vh;
+    font-size: 3.5vh;
     margin: 2vh 0 5vh 0;
 }
-.content label{
-    font-size: 1.7vh;
+
+.content p{
+    display: flex;
+    justify-content: center;
+    font-weight: lighter;
+    font-size: 2vh;
+    margin: -1vh 0 2vh 0;
 }
+
 .content input{
     width: 100%;
     padding: 2vh;
@@ -56,7 +62,8 @@ main{
     color: white;
     padding: 2vh;
     border-style: none;
-    border-radius: 1vh;
+    border-radius: 2vh;
+    border: 0.2vh solid #000;
     font-size: 1.5vh;
     margin-top: 2vh;
 }
