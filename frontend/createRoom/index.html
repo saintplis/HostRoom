@@ -23,6 +23,10 @@
         crossorigin="anonymous"></script>
     <script>
         $(function () {
+            if(!localStorage.getItem('token')){
+                return;    
+            }
+
             $("#headercontent").load("../headerfooter/header.html");
             $("#left-options").load("../admin/index.html");
         })

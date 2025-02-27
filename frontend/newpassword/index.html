@@ -27,6 +27,9 @@
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify(formNewP),
+                        beforeSend: function (xhr){ 
+                            xhr.setRequestHeader('Authorization', localStorage.getItem('token')); 
+                        },
                         success: function(data) {
                             $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
                             setTimeout(function() {
