@@ -35,7 +35,19 @@ class User extends BaseModel{
     }
 
     async exists({ email, cpf, phone_number }){
-        return this.read_by_email(email) || this.read_by_cpf(cpf) || this.read_by_phone(phone_number);
+        if(cpf && this.read_by_cpf(cpf)){
+            return true;
+        }
+
+        if(email && this.read_by_email(email)){
+            return true;
+        }
+
+        if(phone_number && this.read_by_phone(phone_number)){
+            return true;
+        }
+
+        return false;
     }
 }
 
