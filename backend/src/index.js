@@ -14,7 +14,7 @@ const allow_auth = async(request, reply) => {
     try {
         await request.jwtVerify();
     } catch (err) {
-        reply.code(401).send({ error: "Unauthorized" });
+        reply.code(401).send({ error: "Nao autorizado" });
     }
 }
 
@@ -22,7 +22,7 @@ const disallow_auth = async (request, reply) => {
     try {
         await request.jwtVerify();
 
-        return reply.code(403).send({ error: "Already logged in" });
+        return reply.code(403).send({ error: "Ja logado" });
     } catch (err) {
 
     }
