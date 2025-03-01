@@ -79,9 +79,9 @@ panel_route.update_self_post = async(request, response) => {
         return respond(response, 'Sem dados para atualizar');
     }
 
-    await update_self(user_id, body['email'], body['telefone'], body['telefone_emerg']);
+    const result = await update_self(user_id, body['email'], body['telefone'], body['telefone_emerg']);
 
-    return respond(response, self_result.success);
+    return respond(response, result);
 }
 
 export default panel_route
