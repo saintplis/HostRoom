@@ -35,6 +35,9 @@
                         $('#abc').removeClass('error').addClass('success').html('<strong>' + data.message + '</strong>');
                         
                         localStorage.setItem('token', data.token);
+                        setTimeout(function() {
+                            window.location.href = "../account/index.html";
+                        }, 1000);
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         let response;

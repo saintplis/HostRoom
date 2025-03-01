@@ -29,29 +29,36 @@ function disableBtn(button){
       const newPasswordInput = document.getElementById("nova-senha");
       const newPassword = newPasswordInput ? newPasswordInput.value : "";
 
-      if (newPasswordInput) {
-        newPasswordInput.parentNode.removeChild(newPasswordInput);
-      }
-
-      $.ajax({
-        url: "http://localhost:3000/panel/change_password", 
-        type: "POST", 
-        contentType: "application/json; charset=utf-8",
-        beforeSend: function (xhr){ 
-          xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));    
-        },
-        data: JSON.stringify({
-          senha_antiga: oldPassword,
-          senha_nova: newPassword
-        }),
-        success: function(response) {
-          console.log("Senha atualizada com sucesso!", response);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          console.error("Erro ao atualizar a senha:", textStatus, errorThrown);
+      if(oldPassword !== newPassword){
+        if (newPasswordInput) { // Remove a Box da nova senha
+          newPasswordInput.parentNode.removeChild(newPasswordInput);
         }
-      });
-    }
+  
+        $.ajax({
+          url: "http://localhost:3000/panel/change_password", 
+          type: "POST", 
+          contentType: "application/json; charset=utf-8",
+          beforeSend: function (xhr){ 
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));    
+          },
+          data: JSON.stringify({
+            senha_antiga: oldPassword,
+            senha_nova: newPassword
+          }),
+          success: function(response) {
+            console.log("Senha atualizada com sucesso!", response);
+            localStorage.removeItem(token);
+            window.location.href = "../login/index.html";
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Erro ao atualizar a senha:", textStatus, errorThrown);
+          }
+        }); // Ajax  
+      }else{
+        console.log("Senha iguais!",response);
+      }
+      
+    }// Else
   }else if(atr === "email") {
     if (inp.disabled === true) {
       inp.disabled = false;
