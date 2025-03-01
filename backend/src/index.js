@@ -2,6 +2,7 @@ import Fastify from "fastify";
 
 import cors from '@fastify/cors'
 import jwt from '@fastify/jwt'
+import multipart from '@fastify/multipart'
 
 import {auth_route, index_route, panel_route} from "./routes/index.js";
 import config from "./config.js";
@@ -9,14 +10,7 @@ import config from "./config.js";
 const app = Fastify({});
 app.register(cors, {});
 app.register(jwt, {secret: config.rand_str(32)})
-
-const allow_auth = async(request, reply) => {
-    try {
-        await request.jwtVerify();
-    } catch (err) {
-        reply.code(401).send({ error: "Nao autorizado" });
-    }
-}
+app.register(multipart, {limits: { fileSize: 10 * 1024 * 1024 }})
 
 const disallow_auth = async (request, reply) => {
     try {

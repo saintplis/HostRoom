@@ -73,13 +73,17 @@ panel_route.update_self_post = async(request, response) => {
         return respond(response, 'Usuário nao logado');
     }
     
-    let body = request.body;
+    let body = request.body ?? {};
 
-    if(!body){
-        return respond(response, 'Sem dados para atualizar');
+    let file = undefined
+
+    try{
+        file = await request.file()
+    } catch(e){
+        console.log(e)
     }
 
-    const result = await update_self(user_id, body['email'], body['telefone'], body['telefone_emerg']);
+    const result = await update_self(user_id, body['email'], body['telefone'], body['telefone_emerg'], file);
 
     return respond(response, result);
 }
