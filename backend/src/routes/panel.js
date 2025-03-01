@@ -7,7 +7,7 @@ let panel_route = {};
 const respond = (response, result, extra = undefined) => {
     let formatted_msg = { message: result };
 
-    if(result !== change_pass_result.success && result !== room_result.success){
+    if(result !== change_pass_result.success && result !== room_result.success && result !== self_result.success){
         return response.status(400).send(formatted_msg);
     }
 
