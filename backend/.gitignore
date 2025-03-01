@@ -173,6 +173,7 @@ test/js/third_party/prisma/prisma/sqlite/dev.db-journal
 /src/deps/zig
 /src/deps/zlib
 /src/deps/zstd
+/uploads
 
 # Generated files
 
