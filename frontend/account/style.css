@@ -109,3 +109,22 @@ main{
     color: white;
     transform: scale(1.03);
 }
+
+.error-message {
+    display: block;
+    color: red;
+    font-size: 1.4vh;
+    margin-top: 0.5vh;
+  }
+  
+  #msg-global.error {
+    color: red;
+  }
+  
+  #msg-global.success {
+    color: green;
+  }
+  
+  #nova-senha-container {
+    margin-top: 1vh;
+  }

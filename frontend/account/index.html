@@ -9,10 +9,6 @@
     <title>HostRoom - Minha conta</title>
 </head>
 
-<!--
-
--->
-
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
@@ -38,26 +34,33 @@
                     $('#tel-emergencia').val(data.telefone_emerg);
 
                     oldEmail = data.email; 
+                    oldTel = data.telfone;
+                    oldTel_E = data.telefone_emerg
                 },
                 error: function(jqXHR, textStatus, errorThrown){
                     let response;
-                    
                     try {
                         response = JSON.parse(jqXHR.responseText);
                     } catch (e) {
                         response = { message: "Ocorreu um erro inesperado." };
                     }
-                    const msg = response.message
-                    $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
-                    console.log(msg);
+                    $('#msg-global')
+                    .removeClass('success')
+                    .addClass('error')
+                    .text(response.message)
+                    .show();
+                    console.log(response.message);
                 }
             });
         });
     </script>
+
     <div id="headercontent"></div>
+
     <main>
         <section class="content">
             <h2>Minha conta</h2>
+            <div id="msg-global" class="error" style="display: none;"></div>
             <div class="account-info">
                 <div class="image">
                     <img src="img.jpg">
@@ -79,24 +82,28 @@
                         <input id="email" placeholder="IsabelaQ@gmail.com" type="email" disabled>
                         <button data-input-id="email" onclick="disableBtn(this)">Editar</button>
                     </div>
+                    <span id="error-email" class="error-message"></span>
 
                     <label>Senha</label>
                     <div class="edit-info">
                         <input id="senha" placeholder="********" type="password" disabled>
                         <button data-input-id="senha" onclick="disableBtn(this)">Editar</button>
                     </div>
+                    <span id="error-senha" class="error-message"></span>
 
                     <label>Telefone</label>
                     <div class="edit-info">
                         <input id="tel" placeholder="30 92105-8254" type="tel" disabled>
                         <button data-input-id="tel" onclick="disableBtn(this)">Editar</button>
                     </div>
+                    <span id="error-tel" class="error-message"></span>
 
                     <label>Telefone de Emergência</label>
                     <div class="edit-info">
                         <input id="tel-emergencia" placeholder="" type="tel" disabled>
                         <button data-input-id="tel-emergencia" onclick="disableBtn(this)">Editar</button>
                     </div>
+                    <span id="error-tel-emergencia" class="error-message"></span>
 
                 </div>
             </div>
