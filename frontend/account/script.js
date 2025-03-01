@@ -29,11 +29,11 @@ function disableBtn(button){
       const newPasswordInput = document.getElementById("nova-senha");
       const newPassword = newPasswordInput ? newPasswordInput.value : "";
 
+      if (newPasswordInput) { // Remove a Box da nova senha
+        newPasswordInput.parentNode.removeChild(newPasswordInput);
+      }
+
       if(oldPassword !== newPassword){
-        if (newPasswordInput) { // Remove a Box da nova senha
-          newPasswordInput.parentNode.removeChild(newPasswordInput);
-        }
-  
         $.ajax({
           url: "http://localhost:3000/panel/change_password", 
           type: "POST", 
@@ -84,11 +84,12 @@ function disableBtn(button){
           },
           data: JSON.stringify({ email: newEmail }),
           success: function(response) {
-            console.log("Dados atualizados com sucesso!", response);  
+            console.log("Dados atualizados com sucesso!", response);
             window.location.href = "../confirm/index.html";
           },
           error: function(jqXHR, textStatus, errorThrown) {
             console.error("Erro ao atualizar os dados:", textStatus, errorThrown); 
+            $("#email").val(oldEmail);
           }
         });
       }
