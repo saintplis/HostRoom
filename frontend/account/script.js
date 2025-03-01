@@ -57,33 +57,25 @@ function disableBtn(button){
       }
 
       if(oldPassword !== newPassword){
-        $.ajax({
-          url: "http://localhost:3000/panel/change_password", 
-          type: "POST", 
-          contentType: "application/json; charset=utf-8",
-          beforeSend: function (xhr){ 
-            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));    
-          },
-          data: JSON.stringify({
-            senha_antiga: oldPassword,
-            senha_nova: newPassword
-          }),
-          success: function(response) {
+        chamadaAjax("http://localhost:3000/panel/change_password", {
+          senha_antiga: oldPassword,
+          senha_nova: newPassword
+        }, (response) => {
             console.log("Senha atualizada com sucesso!", response);
             localStorage.removeItem(token);
             window.location.href = "../login/index.html";
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
+        }, (jqXHR, textStatus, errorThrown) => {
             console.error("Erro ao atualizar a senha:", textStatus, errorThrown);
             let response;
+
             try {
                 response = JSON.parse(jqXHR.responseText);
             } catch (e) {
                 response = { message: "Erro inesperado ao atualizar a senha." };
             }
+
             mostrarErro("error-senha", response.message);
-          }
-        }); // Ajax  
+        })
       }else{
         console.log("Senha iguais!",response);
       }
