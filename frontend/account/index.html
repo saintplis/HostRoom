@@ -16,42 +16,43 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        let oldEmail = "";
+
         $(function(){
             $("#headercontent").load("../headerfooterclaro/header.html");
-
             // Enviar AJAX
             $.ajax({
-                    url: "http://localhost:3000/panel/self", 
-                    type: "GET",
+                url: "http://localhost:3000/panel/self", 
+                type: "GET",
+                
+                beforeSend: function (xhr){ 
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token')); 
+                },
+                success: function(response) {
+                    const data = response.data
+                    $('#nome').val(data.nome);
+                    $('#data-nascimento').val(data.data_de_nascimento);
+                    $('#cpf').val(data.cpf);
+                    $('#email').val(data.email);
+                    $('#tel').val(data.telefone);
+                    $('#tel-emergencia').val(data.telefone_emerg);
+
+                    oldEmail = data.email; 
+                    oldSenha = data.senha;
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    let response;
                     
-                    beforeSend: function (xhr){ 
-                        xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token')); 
-                        
-                    },
-                    success: function(response) {
-                        const data = response.data
-
-                        $('#nome').val(data.nome);
-                        $('#data-nascimento').val(data.data_de_nascimento);
-                        $('#cpf').val(data.cpf);
-                        $('#email').val(data.email);
-                        $('#tel').val(data.telefone);
-                        $('#tel-emergencia').val(data.telefone_emerg);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown){
-                        let response;
-                        
-                        try {
-                            response = JSON.parse(jqXHR.responseText);
-                        } catch (e) {
-                            response = { message: "Ocorreu um erro inesperado." };
-                        }
-                        const msg = response.message
-                        $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
-                        console.log(msg);
+                    try {
+                        response = JSON.parse(jqXHR.responseText);
+                    } catch (e) {
+                        response = { message: "Ocorreu um erro inesperado." };
                     }
-
-                });
+                    const msg = response.message
+                    $('#abc').removeClass('success').addClass('error').html('<strong>' + response.message + '</strong>');
+                    console.log(msg);
+                }
+            });
         });
     </script>
     <div id="headercontent"></div>
