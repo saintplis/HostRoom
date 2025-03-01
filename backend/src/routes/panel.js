@@ -84,6 +84,4 @@ panel_route.update_self_post = async(request, response) => {
     return respond(response, self_result.success);
 }
 
-
-
 export default panel_route
