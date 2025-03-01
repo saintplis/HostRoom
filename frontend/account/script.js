@@ -22,18 +22,30 @@ function chamadaAjax(link, info, successCallback, errorCallback) {
   });
 }
 
+function bottomEditar(inp, button) {
+  inp.disabled = false;
+  inp.focus();
+  button.innerText = "Salvar";
+  button.style.backgroundColor = "#1e6845";
+  button.style.color = "#ffffff";
+}
+
+function bottomSalvar(inp, button) {
+  inp.disabled = true;
+  button.innerText = "Editar";
+  button.style.backgroundColor = "#ffffff";
+  button.style.color = "#000000";
+}
+
 function disableBtn(button){
   const atr = button.getAttribute("data-input-id")
   const inp = document.getElementById(atr)
 
   if (atr === "senha") {
     if (inp.disabled === true) {
-      inp.disabled = false;
-      inp.focus();
-      button.innerText = "Salvar";
-      button.style.backgroundColor = "#1e6845";
-      button.style.color = "#ffffff";
-
+      bottomEditar(inp, button);
+      ocultarErro("error-senha");
+      // Cria novo bloco de senha
       if (!document.getElementById("nova-senha")) {
         const newPasswordInput = document.createElement("input");
         newPasswordInput.type = "password";
@@ -43,10 +55,8 @@ function disableBtn(button){
         inp.parentNode.insertBefore(newPasswordInput, inp.nextSibling);
       }
     } else {
-      inp.disabled = true;
-      button.innerText = "Editar";
-      button.style.backgroundColor = "#ffffff";
-      button.style.color = "#000000";
+      bottomSalvar(inp, button);
+
       const token = localStorage.getItem('token');
       const oldPassword = inp.value;
       const newPasswordInput = document.getElementById("nova-senha");
@@ -67,46 +77,32 @@ function disableBtn(button){
         }, (jqXHR, textStatus, errorThrown) => {
             console.error("Erro ao atualizar a senha:", textStatus, errorThrown);
             let response;
-
             try {
                 response = JSON.parse(jqXHR.responseText);
             } catch (e) {
                 response = { message: "Erro inesperado ao atualizar a senha." };
             }
-
             mostrarErro("error-senha", response.message);
         })
       }else{
         console.log("Senha iguais!",response);
       }
-    }// Else
+    }
   }else if(atr === "email") {
     if (inp.disabled === true) {
-      inp.disabled = false;
-      inp.focus();
-      button.innerText = "Salvar";
-      button.style.backgroundColor = "#1e6845";
-      button.style.color = "#ffffff";
+      bottomEditar(inp, button);
+      ocultarErro("error-email");
     } else {
-      inp.disabled = true;
-      button.innerText = "Editar";
-      button.style.backgroundColor = "#ffffff";
-      button.style.color = "#000000";
+      bottomSalvar(inp, button);
 
       if(oldEmail !== inp.value){
-        $.ajax({
-          url: "http://localhost:3000/panel/self",
-          type: "POST",
-          contentType: "application/json; charset=utf-8",
-          beforeSend: function (xhr){ 
-            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));    
-          },
-          data: JSON.stringify({ email: inp.value }),
-          success: function(response) {
+        chamadaAjax("http://localhost:3000/panel/self", {
+          email: inp.value
+        }, (response) => {
             console.log("Dados atualizados com sucesso!", response);
             window.location.href = "../confirm/index.html";
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
+            localStorage.removeItem(token);
+        }, (jqXHR, textStatus, errorThrown) => {
             console.error("Erro ao atualizar os dados:", textStatus, errorThrown); 
             let response;
             try {
@@ -116,84 +112,54 @@ function disableBtn(button){
             }
             mostrarErro("error-email", response.message);
             $("#email").val(oldEmail);
-          }
-        });
+          })
       }
     }
   }else if (atr == "tel") {
     if (inp.disabled === true) {
-      inp.disabled = false;
-      inp.focus();
-      button.innerText = "Salvar";
-      button.style.backgroundColor = "#1e6845";
-      button.style.color = "#ffffff";
+      bottomEditar(inp, button);
+      ocultarErro("error-tel");
     } else {
-      inp.disabled = true;
-      button.innerText = "Editar";
-      button.style.backgroundColor = "#ffffff";
-      button.style.color = "#000000";
+      bottomSalvar(inp, button);
 
       if(oldTel !== inp.value){
-        $.ajax({
-          url: "http://localhost:3000/panel/self",
-          type: "POST",
-          contentType: "application/json; charset=utf-8",
-          beforeSend: function (xhr){ 
-              xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));    
-          },
-          data: JSON.stringify({telefone: inp.value,}),
-          success: function(response) {
-              onsole.log("Dados atualizados com sucesso!", response);       
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.error("Erro ao atualizar os dados:", textStatus, errorThrown); 
-            let response;
-            try {
-                response = JSON.parse(jqXHR.responseText);
-            } catch (e) {
-                response = { message: "Erro inesperado ao atualizar o telefone" };
-            }
-            mostrarErro("error-tel", response.message);
+        chamadaAjax("http://localhost:3000/panel/self", {
+          telefone: inp.value
+        }, (response) => {
+          console.log("Dados atualizados com sucesso!", response);  
+        }, (jqXHR, textStatus, errorThrown) => {
+          console.error("Erro ao atualizar os dados:", textStatus, errorThrown); 
+          let response;
+          try {
+              response = JSON.parse(jqXHR.responseText);
+          } catch (e) {
+              response = { message: "Erro inesperado ao atualizar o telefone" };
           }
+          mostrarErro("error-tel", response.message);
         });
       }
     }
   }else{
     if (inp.disabled === true) {
-      inp.disabled = false;
-      inp.focus();
-      button.innerText = "Salvar";
-      button.style.backgroundColor = "#1e6845";
-      button.style.color = "#ffffff";
+      bottomEditar(inp, button);
+      ocultarErro("error-tel-emergencia");
     } else {
-      inp.disabled = true;
-      button.innerText = "Editar";
-      button.style.backgroundColor = "#ffffff";
-      button.style.color = "#000000";
+      bottomSalvar(inp, button);
       
       if(oldTel !== inp.value) {
-        chamada
-        $.ajax({
-          url: "http://localhost:3000/panel/self",
-          type: "POST",
-          contentType: "application/json; charset=utf-8",
-          beforeSend: function (xhr){ 
-              xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));    
-          },
-          data: JSON.stringify({telefone_emerg: inp.value}),
-          success: function(response) {
-              onsole.log("Dados atualizados com sucesso!", response);       
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.error("Erro ao atualizar os dados:", textStatus, errorThrown); 
-            let response;
-            try {
-                response = JSON.parse(jqXHR.responseText);
-            } catch (e) {
-                response = { message: "Erro inesperado ao atualizar o telefone" };
-            }
-            mostrarErro("error-tel-emergencia", response.message);
+        chamadaAjax("http://localhost:3000/panel/self", {
+          telefone_emerg: inp.value
+        }, (response) => {
+          console.log("Dados atualizados com sucesso!", response);  
+        }, (jqXHR, textStatus, errorThrown) => {
+          console.error("Erro ao atualizar os dados:", textStatus, errorThrown); 
+          let response;
+          try {
+              response = JSON.parse(jqXHR.responseText);
+          } catch (e) {
+              response = { message: "Erro inesperado ao atualizar o telefone" };
           }
+          mostrarErro("error-tel-emergencia", response.message);
         });
       }
     }
