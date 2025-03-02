@@ -1,6 +1,6 @@
 import { change_pass_result, change_password } from "../panel/change_password.js";
 import { get_rooms, room_result } from "../panel/room.js";
-import { get_self, update_self, self_result } from '../panel/self.js';
+import { get_self, update_self, self_result} from '../panel/self.js';
 
 let panel_route = {};
 
@@ -75,15 +75,7 @@ panel_route.update_self_post = async(request, response) => {
     
     let body = request.body ?? {};
 
-    let file = undefined
-
-    try{
-        file = await request.file()
-    } catch(e){
-        console.log(e)
-    }
-
-    const result = await update_self(user_id, body['email'], body['telefone'], body['telefone_emerg'], file);
+    const result = await update_self(user_id, body['email'], body['telefone'], body['telefone_emerg'], body['foto']);
 
     return respond(response, result);
 }

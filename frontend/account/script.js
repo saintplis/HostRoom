@@ -53,8 +53,10 @@ function salvarModalFoto() {
     return;
   }
 
+  const base64Data = newfoto.split(',')[1];
+
   chamadaAjax("http://localhost:3000/panel/self", {
-    foto: newfoto
+    foto: base64Data 
   }, (response) => {
       console.log("Imagem atualizada com sucesso!", response);
       $("#modal-foto").hide();

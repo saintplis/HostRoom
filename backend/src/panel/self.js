@@ -5,8 +5,8 @@ import config from "../config.js";
 
 import * as path from 'path';
 import * as fs from 'fs';
+import { promisify } from "util";
 
-import {pipeline} from "stream/promises";
 
 const self_result = {
     success: 'Sucesso',
@@ -16,7 +16,23 @@ const self_result = {
 };
 
 const get_self = async(user_id) => {
-    return await User.read_by_id(user_id);
+    let user = await User.read_by_id(user_id);
+
+    const read_file = promisify(fs.readFile);
+
+    const data = await read_file(user.foto);
+
+    user.foto = 'data:image/png;base64,' + data.toString('base64')
+
+    return user;
+}
+
+const get_file_path = (user_id) => {
+    const upload_dir = path.join(process.cwd(), 'uploads');
+
+    const file_path = path.join(upload_dir, user_id.toString())
+
+    return file_path
 }
 
 const update_self = async(user_id, new_email = undefined, phone_number = undefined, emerg_phone_number = undefined, file = undefined) => {
@@ -55,11 +71,7 @@ const update_self = async(user_id, new_email = undefined, phone_number = undefin
     }
 
     if(file !== undefined){
-        const upload_dir = path.join(process.cwd(), 'uploads');
-
-        const file_path = path.join(upload_dir, user_id + '.png')
-
-        new_data.foto = file_path
+        new_data.foto = get_file_path(user_id)
     }
 
     if(Object.keys(new_data).length === 0){
@@ -71,7 +83,8 @@ const update_self = async(user_id, new_email = undefined, phone_number = undefin
     }
 
     if('foto' in new_data){
-        pipeline(file.file, fs.createWriteStream(new_data.foto))
+        let buffer = Buffer.from(file, 'base64');
+        fs.writeFile(new_data.foto, buffer, (_) => {})
     }
 
     await User.update(user_id, new_data);
