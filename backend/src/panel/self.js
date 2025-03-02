@@ -71,8 +71,6 @@ const update_self = async(user_id, new_email = undefined, phone_number = undefin
     }
 
     if('foto' in new_data){
-        console.log(new_data.foto)
-        console.log(file)
         pipeline(file.file, fs.createWriteStream(new_data.foto))
     }
 
