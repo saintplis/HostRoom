@@ -1,9 +1,10 @@
+let newfoto = ""; 
+
 // Função para mostrar mensagem de erro em um campo específico
 function mostrarErro(campoId, mensagem) {
   $("#" + campoId).text(mensagem).show();
 }
 
-// Função para ocultar a mensagem de erro de um campo específico
 function ocultarErro(campoId) {
   $("#" + campoId).hide();
 }
@@ -21,6 +22,60 @@ function chamadaAjax(link, info, successCallback, errorCallback) {
     error: errorCallback
   });
 }
+
+function abrirModalFoto() {
+  $("#modal-foto").show();
+}
+
+function fecharModalFoto() {
+  $("#modal-foto").hide();
+}
+
+
+
+$(function() {
+  $("#buttom_foto").on("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        $("#foto").attr("src", e.target.result);
+        newfoto = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+});
+
+function salvarModalFoto() { 
+  if (!newfoto) {
+    mostrarErro("error-foto", "Selecione uma imagem para upload.");
+    return;
+  }
+
+  chamadaAjax("http://localhost:3000/panel/self", {
+    foto: newfoto
+  }, (response) => {
+      console.log("Imagem atualizada com sucesso!", response);
+      $("#modal-foto").hide();
+  }, (jqXHR, textStatus, errorThrown) => {
+      console.error("Erro ao atualizar a foto:", textStatus, errorThrown); 
+      let response;
+      try {
+          response = JSON.parse(jqXHR.responseText);
+      } catch (e) {
+          response = { message: "Erro inesperado ao atualizar a foto." };
+      }
+      mostrarErro("error-foto", response.message);
+  })
+}
+
+// Fecha o modal ao clicar fora
+$(window).on('click', function(event) {
+  if ($(event.target).is("#modal-foto")) {
+    fecharModalFoto();
+  }
+});
 
 function bottomEditar(inp, button) {
   inp.disabled = false;
@@ -58,7 +113,6 @@ function disableBtn(button){
       bottomSalvar(inp, button);
 
       const token = localStorage.getItem('token');
-      const oldPassword = inp.value;
       const newPasswordInput = document.getElementById("nova-senha");
       const newPassword = newPasswordInput ? newPasswordInput.value : "";
 
@@ -66,9 +120,9 @@ function disableBtn(button){
         newPasswordInput.parentNode.removeChild(newPasswordInput);
       }
 
-      if(oldPassword !== newPassword){
+      if(inp.value !== newPassword){
         chamadaAjax("http://localhost:3000/panel/change_password", {
-          senha_antiga: oldPassword,
+          senha_antiga: inp.value,
           senha_nova: newPassword
         }, (response) => {
             console.log("Senha atualizada com sucesso!", response);

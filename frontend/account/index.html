@@ -26,6 +26,7 @@
                 },
                 success: function(response) {
                     const data = response.data
+                    $('#foto').attr('src', data.foto);
                     $('#nome').val(data.nome);
                     $('#data-nascimento').val(data.data_de_nascimento);
                     $('#cpf').val(data.cpf);
@@ -50,6 +51,7 @@
                     .text(response.message)
                     .show();
                     console.log(response.message);
+                    window.location.href = "../login/index.html";
                 }
             });
         });
@@ -63,9 +65,11 @@
             <div id="msg-global" class="error" style="display: none;"></div>
             <div class="account-info">
                 <div class="image">
-                    <img src="img.jpg">
-                    <input type="file" name="photo" id="photoBtn" accept="image/*">
-                    <label for="photoBtn"><i class="fa-solid fa-plus"></i> Adicionar Imagem</label>
+                    <img src="img.jpg" id="foto" alt="Foto do usuário">
+                    <button id="openModalFoto" onclick="abrirModalFoto()">
+                      <i class="fa-solid fa-plus"></i> Adicionar Imagem
+                    </button>
+                    <span id="error-foto" class="error-message"></span>
                 </div>
                 <div class="infos">
                     <label>Nome</label>
@@ -79,7 +83,7 @@
 
                     <label>Email</label>
                     <div class="edit-info">
-                        <input id="email" placeholder="IsabelaQ@gmail.com" type="email" disabled>
+                        <input id="email" placeholder="test@gmail.com" type="email" disabled>
                         <button data-input-id="email" onclick="disableBtn(this)">Editar</button>
                     </div>
                     <span id="error-email" class="error-message"></span>
@@ -109,6 +113,17 @@
             </div>
         </section>
     </main>
+    
+    <div id="modal-foto" class="modal">
+        <div class="modal-content">
+          <span class="close-modal" onclick="fecharModalFoto()">&times;</span>
+          <h2>Adicionar Imagem</h2>
+          <input type="file" name="photo" id="buttom_foto" accept="image/*">
+          <button onclick="fecharModalFoto()">Fechar</button>
+          <button onclick="salvarModalFoto()">Salvar</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
