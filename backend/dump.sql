@@ -73,7 +73,7 @@ CREATE SEQUENCE quartos_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 
 
 CREATE TABLE "public"."quartos" (
     "id" integer DEFAULT nextval('quartos_id_seq') NOT NULL,
-    "id_do_usuario" text NOT NULL,
+    "id_do_usuario" integer NOT NULL,
     "nome" text NOT NULL,
     "fotos" text NOT NULL,
     "compartilhado" boolean NOT NULL,
@@ -104,8 +104,9 @@ CREATE TABLE "public"."usuarios" (
     "admin" smallint NOT NULL,
     "telefone_emerg" text NOT NULL,
     "validado" smallint DEFAULT '0' NOT NULL,
+    "foto" text,
     CONSTRAINT "usuarios_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
 
--- 2025-02-25 12:30:26.802615-03
+-- 2025-03-03 14:37:47.508054-03
