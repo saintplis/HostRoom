@@ -58,7 +58,7 @@ const update_self = async(user_id, new_email = undefined, phone_number = undefin
         new_data.validado = 0;
     }
     
-    if(phone_number !== undefined && validator.phone_number_digs(phone_number)){
+    if(phone_number !== undefined){
         if(!validator.phone_number_digs(phone_number)){
             return self_result.invalid_phone_number;
         }
@@ -66,7 +66,7 @@ const update_self = async(user_id, new_email = undefined, phone_number = undefin
         new_data.telefone = phone_number;
     }
 
-    if(emerg_phone_number !== undefined && validator.phone_number_digs(emerg_phone_number)){
+    if(emerg_phone_number !== undefined){
         if(!validator.phone_number_digs(emerg_phone_number)){
             return self_result.invalid_phone_number;
         }
