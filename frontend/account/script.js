@@ -183,6 +183,7 @@ function disableBtn(button){
           telefone: inp.value
         }, (response) => {
           console.log("Dados atualizados com sucesso!", response);  
+          oldTel = inp.value;
         }, (jqXHR, textStatus, errorThrown) => {
           console.error("Erro ao atualizar os dados:", textStatus, errorThrown); 
           let response;
@@ -192,6 +193,7 @@ function disableBtn(button){
               response = { message: "Erro inesperado ao atualizar o telefone" };
           }
           mostrarErro("error-tel", response.message);
+          $("#tel").val(oldTel);
         });
       }
     }
@@ -206,7 +208,8 @@ function disableBtn(button){
         chamadaAjax("http://localhost:3000/panel/self", {
           telefone_emerg: inp.value
         }, (response) => {
-          console.log("Dados atualizados com sucesso!", response);  
+          console.log("Dados atualizados com sucesso!", response); 
+          oldTelEmerg = inp.value; 
         }, (jqXHR, textStatus, errorThrown) => {
           console.error("Erro ao atualizar os dados:", textStatus, errorThrown); 
           let response;
@@ -216,6 +219,7 @@ function disableBtn(button){
               response = { message: "Erro inesperado ao atualizar o telefone" };
           }
           mostrarErro("error-tel-emergencia", response.message);
+          $("#tel-emergencia").val(oldTelEmerg);
         });
       }
     }
