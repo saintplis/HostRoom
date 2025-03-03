@@ -4,8 +4,8 @@ import { email_type, raw_create_send } from './email.js';
 
 const login_result = {
     success: 'Sucesso',
-    invalid_email: 'Email invalido',
-    invalid_pass: 'Senha invalida',
+    invalid_email: 'Dados inválidos',
+    invalid_pass: 'Dados Inválidos',
     unverified_email: 'Por favor cheque seu email para obter o codigo de verificacao',
 };
 
