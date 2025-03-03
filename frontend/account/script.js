@@ -1,3 +1,4 @@
+let oldFoto = "";
 let newfoto = ""; 
 
 // Função para mostrar mensagem de erro em um campo específico
@@ -24,11 +25,14 @@ function chamadaAjax(link, info, successCallback, errorCallback) {
 }
 
 function abrirModalFoto() {
+  oldFoto = $("#foto").attr("src");
   $("#modal-foto").show();
 }
 
 function fecharModalFoto() {
   $("#modal-foto").hide();
+  $("#foto").attr("src", oldFoto);
+  newfoto = "";
 }
 
 
