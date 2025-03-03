@@ -20,6 +20,10 @@ const get_self = async(user_id) => {
 
     const read_file = promisify(fs.readFile);
 
+    if(!user.foto){
+        return user;
+    }
+
     const data = await read_file(user.foto);
 
     user.foto = 'data:image/png;base64,' + data.toString('base64')
